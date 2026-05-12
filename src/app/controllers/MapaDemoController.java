@@ -25,8 +25,9 @@
  *
  * ============================================================
  */
-package mapademo;
+package app.controllers;
 
+import app.Poi;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -76,7 +77,7 @@ import javafx.util.Duration;
  * Implementa {@link Initializable} para poder ejecutar código de
  * inicialización una vez que el FXML ha sido cargado completamente.
  */
-public class FXMLDocumentController implements Initializable {
+public class MapaDemoController implements Initializable {
 
     // =========================================================
     //  ESTRUCTURA DE NODOS PARA ZOOM
