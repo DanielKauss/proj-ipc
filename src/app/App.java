@@ -21,7 +21,7 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/MapaDemo.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/LandingPage.fxml"));
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/logo.png")));
         Scene scene = new Scene(root);
         stage.setTitle("Demo mapas - IPC");

@@ -156,7 +156,7 @@ public class MapaDemoController implements Initializable {
     private Label mousePosition;
     @FXML
     private SplitPane splitPane;
- 
+
 
     // =========================================================
     //  MANEJADORES DE ZOOM
