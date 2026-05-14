@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import upv.ipc.sportlib.SportActivityApp;
 
 /**
  *
@@ -22,11 +23,13 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/LandingPage.fxml"));
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/logo.png")));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/logo.png")));
         Scene scene = new Scene(root);
         stage.setTitle("Demo mapas - IPC");
         stage.setScene(scene);
         stage.show();
+        
+        Controller.stage = stage;
     }
 
     /**

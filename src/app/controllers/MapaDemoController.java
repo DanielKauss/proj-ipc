@@ -491,7 +491,7 @@ public class MapaDemoController implements Initializable {
         // Personalizamos el icono de la ventana del diálogo
         Stage dialogStage = (Stage) mensaje.getDialogPane().getScene().getWindow();
         dialogStage.getIcons().add(
-            new Image(getClass().getResourceAsStream("/resources/logo.png"))
+            new Image(getClass().getResourceAsStream("/resources/images/logo.png"))
         );
 
         mensaje.setTitle("Acerca de");
@@ -520,7 +520,7 @@ public class MapaDemoController implements Initializable {
         // Personalizamos el icono de la ventana del diálogo
         Stage dialogStage = (Stage) poiDialog.getDialogPane().getScene().getWindow();
         dialogStage.getIcons().add(
-            new Image(getClass().getResourceAsStream("/resources/logo.png"))
+            new Image(getClass().getResourceAsStream("/resources/images/logo.png"))
         );
 
         // Botones del diálogo: Aceptar y Cancelar

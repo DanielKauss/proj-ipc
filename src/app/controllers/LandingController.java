@@ -4,6 +4,7 @@
  */
 package app.controllers;
 
+import app.Controller;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import java.net.URL;
@@ -20,7 +21,7 @@ import javafx.stage.Stage;
  *
  * @author daniel
  */
-public class LandingController implements Initializable {
+public class LandingController extends Controller {
     @FXML
     private Button loginBtn;
     private Button RegisterBtn;
@@ -32,19 +33,7 @@ public class LandingController implements Initializable {
     @FXML
     public void loginBtnClick(MouseEvent event) throws IOException {
         System.out.println("btn clicked!!");
-        FXMLLoader loader = new FXMLLoader(
-            LandingController.class.getResource(
-                "/resources/fxml/MapaDemo.fxml"
-            )
-        );
-
-        Parent root = loader.load();
-
-        // aqui se pueden pasar valores creo?
-        MapaDemoController controller = loader.getController();
-        Stage stage = (Stage) loginBtn.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+        changeScene("MapaDemo");
     }
 
 }
