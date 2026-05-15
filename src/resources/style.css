@@ -56,6 +56,13 @@
     -fx-effect: dropshadow( two-pass-box, rgba(0, 0, 0, 0.5), 10, 0.0, 0, 10 );
 }
 
+.sec-button {
+    -fx-pref-height: 48px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 11px;
+    -fx-effect: dropshadow( two-pass-box, rgba(0, 0, 0, 0.5), 10, 0.0, 0, 10 );
+}
+
 .error {
     -fx-text-fill: #ff0000;
     -fx-font-size: 13px;
