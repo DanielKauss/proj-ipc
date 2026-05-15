@@ -8,3 +8,4 @@ nbdist/
 .nb-gradle/
 lib/
 .direnv
+sportactivity.db

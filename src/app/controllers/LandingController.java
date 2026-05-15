@@ -33,7 +33,7 @@ public class LandingController extends Controller {
     @FXML
     public void loginBtnClick(MouseEvent event) throws IOException {
         System.out.println("btn clicked!!");
-        changeScene("MapaDemo");
+        changeScene("Registro");
     }
 
 }

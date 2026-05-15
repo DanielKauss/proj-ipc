@@ -1,0 +1,115 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
+package app.controllers;
+
+import app.Controller;
+import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import upv.ipc.sportlib.SportActivityApp;
+import upv.ipc.sportlib.User;
+
+/**
+ * FXML Controller class
+ *
+ * @author apere
+ */
+public class RegistroController extends Controller implements Initializable {
+
+    @FXML
+    private TextField campoNombre;
+    @FXML
+    private Label errorNombre;
+    @FXML
+    private Label errorContr;
+    @FXML
+    private Label errorCorreo;
+    @FXML
+    private Label errorFecha;
+    @FXML
+    private TextField campoCorreo;
+    @FXML
+    private DatePicker campoFecha;
+    @FXML
+    private PasswordField campoContr;
+    
+    String avatarPath = null;
+    boolean visible = false;
+    SportActivityApp app = SportActivityApp.getInstance();
+    
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+     
+    }    
+
+    @FXML
+    private void salir(ActionEvent event) {
+        changeScene("LandingPage");
+    }
+
+    @FXML
+    private void registrarse(ActionEvent event) {
+        if(app.registerUser(campoNombre.getText(), campoCorreo.getText(),
+                campoContr.getText(), campoFecha.getValue(), avatarPath)){
+            
+                changeScene("MapaDemo");
+            
+        }else{
+            if(!User.checkNickName(campoNombre.getText())){
+                errorNombre.setText("El nombre de usuario debe ser entre 6 y 15 caracteres, solo letras, dígitos, guión o subguión");
+                errorNombre.setVisible(true);
+            }else if(User.checkEmail(campoCorreo.getText()) && User.checkPassword(campoContr.getText())
+                    && User.isOlderThan(campoFecha.getValue(), 12)){
+                errorNombre.setText("Este nombre de usuario ya está en uso");
+                errorNombre.setVisible(true);
+            }else{
+                errorNombre.setVisible(false);
+            }
+            if(!User.checkEmail(campoCorreo.getText())){
+                errorCorreo.setVisible(true);
+            }else{
+                errorCorreo.setVisible(false);
+            }
+            if(!User.checkPassword(campoContr.getText())){
+                errorContr.setVisible(true);
+            }else{
+                errorContr.setVisible(false);
+            }
+            if(!User.isOlderThan(campoFecha.getValue(), 12)){
+                errorFecha.setVisible(true);
+            }else{
+                errorFecha.setVisible(false);
+            }
+        }
+    }
+
+    @FXML
+    private void subirAvatar(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Seleccionar foto de avatar");
+        fileChooser.getExtensionFilters().add(
+            new FileChooser.ExtensionFilter("Imágenes JPG y PNG","*.jpg","*.jpeg","*.png")
+        );
+        File archivo = fileChooser.showOpenDialog(null);
+
+        if (archivo != null) {
+            avatarPath = archivo.getAbsolutePath();
+        }
+    }
+
+}
