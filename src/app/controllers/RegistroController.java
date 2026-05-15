@@ -48,13 +48,12 @@ public class RegistroController extends Controller implements Initializable {
     boolean visible = false;
     SportActivityApp app = SportActivityApp.getInstance();
     
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-     
+        errorNombre.setVisible(false);
+        errorCorreo.setVisible(false);
+        errorContr.setVisible(false);
+        errorFecha.setVisible(false);
     }    
 
     @FXML
