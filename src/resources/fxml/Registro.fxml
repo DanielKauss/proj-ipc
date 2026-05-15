@@ -98,7 +98,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </TextField>
-                              <Label fx:id="errorNombre" styleClass="error" text="Nombre Incorrecto" textFill="RED">
+                              <Label fx:id="errorNombre" maxHeight="-Infinity" styleClass="error" text="El nombre de usuario debe ser entre 6 y 15 caracteres, solo letras, dígitos, guión o subguión" textFill="RED" wrapText="true">
                                  <VBox.margin>
                                     <Insets left="25.0" />
                                  </VBox.margin>

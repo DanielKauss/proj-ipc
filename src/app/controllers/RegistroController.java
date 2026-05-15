@@ -25,7 +25,7 @@ import upv.ipc.sportlib.User;
  *
  * @author apere
  */
-public class RegistroController extends Controller implements Initializable {
+public class RegistroController extends Controller  {
 
     @FXML
     private TextField campoNombre;
