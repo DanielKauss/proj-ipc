@@ -37,7 +37,10 @@
  ******************************************************************************/
 
 .window {
-    -fx-background-color: #333333;
+    -fx-background-image: url('images/fondo.jpg');
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
 }
 
 .title {
@@ -45,26 +48,74 @@
 }
 
 .ntext {
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #dddddd;
 }
 
 .prim-button {
     -fx-pref-height: 48px;
-    -fx-border-radius: 20px;
+    -fx-text-fill: #ffffff;
     -fx-background-color: #0685BC;
-    -fx-background-radius: 11px;
-    -fx-effect: dropshadow( two-pass-box, rgba(0, 0, 0, 0.5), 10, 0.0, 0, 10 );
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgba(6, 133, 188, 0.3), 10, 0.0, 0, 4);
+    -fx-cursor: hand;
+}
+
+.prim-button:hover {
+    -fx-background-color: #089de0;
 }
 
 .sec-button {
     -fx-pref-height: 48px;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 11px;
-    -fx-effect: dropshadow( two-pass-box, rgba(0, 0, 0, 0.5), 10, 0.0, 0, 10 );
+    -fx-background-color: #aaaaaa;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.sec-button:hover {
+    -fx-background-color: #cccccc;
+}
+
+.text-field, .password-field, .date-picker > .text-field {
+    -fx-pref-height: 40px;
+    -fx-background-color: #4a4a4a;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #888888;
+    -fx-background-radius: 4px;
+    -fx-padding: 10px;
+    -fx-margin-top: 200px;
+    -fx-border-color: transparent transparent #0685BC transparent;
+    -fx-border-width: 0 0 2px 0;
+}
+
+.date-picker {
+    -fx-background-color: #4a4a4a;
+}
+
+.date-picker:hover {
+    -fx-background-color: #444444;
+}
+
+.text-field:hover, .password-field:hover {
+    -fx-background-color: #444444;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-background-color: #666666;
+    -fx-border-color: #0685BC;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+}
+
+
+.form-wrap {
+    -fx-background-color: #383838;
+    -fx-padding: 40px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0.0, 0, 5);
 }
 
 .error {
-    -fx-text-fill: #ff0000;
+    -fx-text-fill: #ff5e5e;
     -fx-font-size: 13px;
 }
 

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" prefHeight="800.0" prefWidth="1200.0" styleClass="window" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.RegistroController">
+<GridPane alignment="CENTER" prefHeight="800.0" prefWidth="1200.0" styleClass="window" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/21.0.3-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.RegistroController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -56,7 +57,7 @@
                   </Button>
                   <VBox alignment="CENTER" GridPane.columnIndex="1">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Registrarse" wrappingWidth="226.962158203125">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Registrarse" textAlignment="CENTER" wrappingWidth="226.962158203125">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="36.0" />
                            </font>
@@ -78,13 +79,13 @@
                   <RowConstraints minHeight="10.0" vgrow="NEVER" />
                </rowConstraints>
                <children>
-                  <VBox spacing="10.0" GridPane.columnIndex="1">
+                  <VBox spacing="10.0" styleClass="form-wrap" GridPane.columnIndex="1">
                      <children>
                         <VBox>
                            <children>
                               <Label styleClass="ntext" text="Nombre de usuario*:">
                                  <VBox.margin>
-                                    <Insets left="25.0" top="5.0" />
+                                    <Insets bottom="5.0" />
                                  </VBox.margin>
                                  <font>
                                     <Font size="16.0" />
@@ -92,7 +93,7 @@
                               </Label>
                               <TextField fx:id="campoNombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="200.0">
                                  <VBox.margin>
-                                    <Insets left="25.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <font>
                                     <Font size="14.0" />
@@ -100,7 +101,7 @@
                               </TextField>
                               <Label fx:id="errorNombre" maxHeight="-Infinity" styleClass="error" text="El nombre de usuario debe ser entre 6 y 15 caracteres, solo letras, dígitos, guión o subguión" textFill="RED" wrapText="true">
                                  <VBox.margin>
-                                    <Insets left="25.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <font>
                                     <Font size="9.0" />
@@ -112,13 +113,13 @@
                            <children>
                               <Label styleClass="ntext" text="Contraseña*:">
                                  <padding>
-                                    <Insets left="25.0" top="5.0" />
+                                    <Insets top="5.0" />
                                  </padding>
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets bottom="5.0" />
                                  </VBox.margin>
                               </Label>
                               <PasswordField fx:id="campoContr" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="200.0">
@@ -126,12 +127,12 @@
                                     <Font size="14.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets left="25.0" />
+                                    <Insets />
                                  </VBox.margin>
                               </PasswordField>
-                              <Label fx:id="errorContr" ellipsisString="" text="La contraseña debe ser entre 8 y 20 caracteres, con al menos una mayúscula, una minúscula, un dígito y un símbolo especial" textFill="RED" textOverrun="CLIP" wrapText="true">
+                              <Label fx:id="errorContr" ellipsisString="" styleClass="error" text="La contraseña debe ser entre 8 y 20 caracteres, con al menos una mayúscula, una minúscula, un dígito y un símbolo especial" textFill="RED" textOverrun="CLIP" wrapText="true">
                                  <VBox.margin>
-                                    <Insets left="25.0" />
+                                    <Insets />
                                  </VBox.margin>
                               </Label>
                            </children>
@@ -140,7 +141,7 @@
                            <children>
                               <Label styleClass="ntext" text="Correo electrónico*:">
                                  <VBox.margin>
-                                    <Insets left="25.0" top="5.0" />
+                                    <Insets bottom="5.0" />
                                  </VBox.margin>
                                  <font>
                                     <Font size="16.0" />
@@ -151,12 +152,12 @@
                                     <Font size="14.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets left="25.0" />
+                                    <Insets />
                                  </VBox.margin>
                               </TextField>
                               <Label fx:id="errorCorreo" styleClass="error" text="El formato del correo debe ser usuario@dominio" textFill="RED">
                                  <VBox.margin>
-                                    <Insets left="25.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <font>
                                     <Font size="9.0" />
@@ -168,24 +169,21 @@
                            <children>
                               <Label prefHeight="31.0" prefWidth="241.0" styleClass="ntext" text="Fecha de nacimiento*:">
                                  <padding>
-                                    <Insets left="25.0" top="5.0" />
+                                    <Insets top="5.0" />
                                  </padding>
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets bottom="5.0" />
                                  </VBox.margin>
                               </Label>
                               <DatePicker fx:id="campoFecha">
                                  <VBox.margin>
-                                    <Insets left="25.0" />
+                                    <Insets />
                                  </VBox.margin>
                               </DatePicker>
                               <Label fx:id="errorFecha" styleClass="error" text="Se debe ser mayor de 12 años" textFill="RED">
-                                 <padding>
-                                    <Insets left="25.0" />
-                                 </padding>
                                  <font>
                                     <Font size="9.0" />
                                  </font>
@@ -194,9 +192,9 @@
                         </VBox>
                         <HBox alignment="BOTTOM_LEFT" prefHeight="36.0" prefWidth="563.0">
                            <children>
-                              <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#subirAvatar" prefHeight="34.0" text="Subir foto de avatar">
+                              <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#subirAvatar" prefHeight="34.0" styleClass="sec-button" text="Subir foto de avatar">
                                  <HBox.margin>
-                                    <Insets left="25.0" top="10.0" />
+                                    <Insets top="10.0" />
                                  </HBox.margin>
                                  <graphic>
                                     <ImageView fitHeight="30.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
@@ -208,6 +206,11 @@
                               </Button>
                            </children>
                         </HBox>
+                        <Separator opacity="0.4" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Separator>
                         <HBox alignment="TOP_CENTER" spacing="25.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#registrarse" prefHeight="1000.0" prefWidth="1000.0" styleClass="prim-button" text="Registrarse" textFill="WHITE">
@@ -220,11 +223,8 @@
                               <Insets />
                            </opaqueInsets>
                            <VBox.margin>
-                              <Insets left="25.0" />
+                              <Insets />
                            </VBox.margin>
-                           <padding>
-                              <Insets top="20.0" />
-                           </padding>
                         </HBox>
                      </children>
                   </VBox>
