@@ -59,6 +59,7 @@ public class PaginaPrincipalController extends Controller {
 
     @FXML
     private void perfil(ActionEvent event) {
+        changeScene("ModificarPerfil");
     }
 
     @FXML
