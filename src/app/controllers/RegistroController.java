@@ -66,7 +66,7 @@ public class RegistroController extends Controller  {
         if(app.registerUser(campoNombre.getText(), campoCorreo.getText(),
                 campoContr.getText(), campoFecha.getValue(), avatarPath)){
             
-                changeScene("MapaDemo");
+                changeScene("PaginaPrincipal");
             
         }else{
             if(!User.checkNickName(campoNombre.getText())){
