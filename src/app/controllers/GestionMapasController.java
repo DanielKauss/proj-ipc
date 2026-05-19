@@ -63,10 +63,20 @@ public class GestionMapasController extends Controller {
         
     }    
 
-   
-
     @FXML
-    private void visualizar(ActionEvent event) {
+    private void visualizar(ActionEvent event) throws IOException {
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/resources/fxml/VisualizarMapa.fxml"));
+        Parent root = miCargador.load();
+        
+        VisualizarMapaController controlador = miCargador.getController();
+        
+        controlador.initMapa(listView.getSelectionModel().getSelectedItem());
+        
+        Scene scene = new Scene(root,1200,800);
+        Stage stage = (Stage) bAñadir.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+        
     }
 
     @FXML
