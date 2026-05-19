@@ -63,6 +63,7 @@ public class PaginaPrincipalController extends Controller {
 
     @FXML
     private void historialSesiones(ActionEvent event) {
+        changeScene("HistorialSesiones");
     }
 
     @FXML

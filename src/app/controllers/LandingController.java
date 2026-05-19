@@ -25,6 +25,8 @@ public class LandingController extends Controller {
     @FXML
     private Button loginBtn;
     private Button RegisterBtn;
+    @FXML
+    private Button registerBtn;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

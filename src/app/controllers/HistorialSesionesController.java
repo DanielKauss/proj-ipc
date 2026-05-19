@@ -4,46 +4,52 @@
  */
 package app.controllers;
 
-import app.Controller;
+import static app.Controller.changeScene;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import upv.ipc.sportlib.Session;
 import upv.ipc.sportlib.SportActivityApp;
 
 /**
  * FXML Controller class
  *
- * @author Usuario
+ * @author Daniel
  */
-public class CerrarSesionController extends Controller {
+public class HistorialSesionesController implements Initializable {
 
     @FXML
-    private Button permanecer;
+    private Button buttonCancel;
     @FXML
-    private Button salir;
+    private ListView<Session> HistorialObservable;
+    
     SportActivityApp app = SportActivityApp.getInstance();
-  
+    
+    ObservableList<Session> Historial = null;
+    
+    private List<Session> datos = app.getSessionsByUser(app.getCurrentUser());
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+         
+        Historial = FXCollections.observableArrayList(datos);
+        
+        HistorialObservable.setItems(Historial);
     }    
 
     @FXML
-    private void volver(ActionEvent event) {
+    private void actionCancel(ActionEvent event) {
         changeScene("PaginaPrincipal");
-    }
-
-    @FXML
-    private void salirse(ActionEvent event) {
-        app.logout();
-        changeScene("landingPage");
     }
     
 }

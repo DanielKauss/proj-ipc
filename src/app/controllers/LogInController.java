@@ -36,6 +36,8 @@ public class LogInController implements Initializable {
     SportActivityApp app = SportActivityApp.getInstance();
     @FXML
     private Button cancel;
+    
+    private boolean nickexiste = false;
 
     /**
      * Initializes the controller class.
@@ -52,9 +54,13 @@ public class LogInController implements Initializable {
     @FXML
     private void actionLogIn(ActionEvent event) {
         
+        
+        
        if(app.login(campoCorreo.getText(),campoContra.getText())){ 
-        changeScene("MapaDemo");
-       }else{errorContra.setVisible(true);}
+        changeScene("PaginaPrincipal");
+       }else{errorContra.setVisible(true);
+       System.out.println(campoCorreo.getText());
+        System.out.println(campoContra.getText());}
     }
 
     @FXML
