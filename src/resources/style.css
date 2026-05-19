@@ -147,3 +147,24 @@ S17.642,20.762,13.558,20.762z";
 .map-pin .arrow-button .arrow {
     -fx-padding: 0;
 }
+
+.list-view{
+    -fx-background-color: #aaaaaa;
+    -fx-border-color: white;
+    -fx-border-width: 2 0 2 0;
+}
+
+.list-cell{
+    -fx-background-color: #aaaaaa;
+    -fx-text-fill: black;
+    -fx-border-color: white;
+    -fx-border-width: 0 0 1 0;
+    -fx-cell-size: 100px; 
+    -fx-padding: 10px; 
+    -fx-font-size: 32px;
+}
+
+.list-cell:selected {
+    -fx-background-color: #0685BC;
+    -fx-text-fill: #ffffff;
+}

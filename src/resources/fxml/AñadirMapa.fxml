@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox alignment="CENTER" spacing="24.0" styleClass="window" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.AñadirMapaController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="3.0" prefWidth="273.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Añadir Mapa">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="20.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="167.0" minWidth="-Infinity" prefWidth="104.66663869222005" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="338.66664632161456" minWidth="-Infinity" prefWidth="176.00002797444662" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <TextField fx:id="campoNombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="147.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label minHeight="-Infinity" minWidth="-Infinity" styleClass="ntext" text="Nombre:">
+               <padding>
+                  <Insets left="15.0" right="3.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <Label minHeight="-Infinity" minWidth="-Infinity" styleClass="ntext" text="Latitud mínima:" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="15.0" right="3.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="campoLatMin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="110.0" promptText="+/- 0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label prefHeight="17.0" prefWidth="86.0" styleClass="ntext" text="Latitud máxima:" textAlignment="RIGHT" GridPane.rowIndex="2" />
+            <Label styleClass="ntext" text="Longitud mínima:" GridPane.rowIndex="3" />
+            <Label styleClass="ntext" text="Longitud máxima:" GridPane.rowIndex="4" />
+            <TextField fx:id="campoLatMax" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="110.0" promptText="+/- 0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="campoLongMin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="110.0" promptText="+/- 0.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="campoLongMax" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="110.0" promptText="+/- 0.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </children>
+         <padding>
+            <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+         </padding>
+      </GridPane>
+      <VBox alignment="TOP_CENTER" prefHeight="19.0" prefWidth="295.0">
+         <children>
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#subirMapa" prefHeight="34.0" styleClass="sec-button" text="Subir foto del mapa">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Simbolo_subir_foto.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label fx:id="errorMapa" prefHeight="19.0" prefWidth="195.0" styleClass="error" text="No se ha podido añadir el mapa" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" spacing="24.0">
+         <children>
+            <Button fx:id="bCancelar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancelar" prefWidth="100.0" styleClass="sec-button" text="Cancelar" />
+            <Button fx:id="bAñadir" mnemonicParsing="false" onAction="#añadir" prefWidth="100.0" styleClass="prim-button" text="Añadir" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+   </padding>
+</VBox>
