@@ -64,43 +64,48 @@ public class RegistroController extends Controller  {
     @FXML
     private void registrarse(ActionEvent event) {
         boolean datosValidos = true;
-        if(!User.checkNickName(campoNombre.getText())){
-            errorNombre.setText("El nombre de usuario debe ser entre 6 y 15 caracteres, solo letras, dígitos, guión o subguión");
-            errorNombre.setVisible(true);
-            datosValidos = false;
-        }else if(app.nickNameExists(campoNombre.getText())){
-            errorNombre.setText("Este nombre de usuario ya está en uso");
-            errorNombre.setVisible(true);
-            datosValidos = false;
-        }else{
-            errorNombre.setVisible(false);
-        }
-        if(!User.checkEmail(campoCorreo.getText())){
-            errorCorreo.setVisible(true);
-            datosValidos = false;
-        }else{
-            errorCorreo.setVisible(false);
-        }
-        if(!User.checkPassword(campoContr.getText())){
-            errorContr.setVisible(true);
-            datosValidos = false;
-        }else{
-            errorContr.setVisible(false);
-        }
-        if(!User.isOlderThan(campoFecha.getValue(), 12)){
-            errorFecha.setVisible(true);
-            datosValidos = false;
-        }else{
-            errorFecha.setVisible(false);
-        }
-        if(datosValidos){
-            app.registerUser(campoNombre.getText(), campoCorreo.getText(),
-                campoContr.getText(), campoFecha.getValue(), avatarPath);
-            
-            changeScene("PaginaPrincipal");
-        }
-        
+    
+    if (!User.checkNickName(campoNombre.getText())) {
+        errorNombre.setText("El nombre de usuario debe ser entre 6 y 15 caracteres, solo letras, dígitos, guión o subguión");
+        errorNombre.setVisible(true);
+        datosValidos = false;
+    } else if (app.nickNameExists(campoNombre.getText())) {
+        errorNombre.setText("Este nombre de usuario ya está en uso");
+        errorNombre.setVisible(true);
+        datosValidos = false;
+    } else {
+        errorNombre.setVisible(false);
     }
+    
+    if (!User.checkEmail(campoCorreo.getText())) {
+        errorCorreo.setVisible(true);
+        datosValidos = false;
+    } else {
+        errorCorreo.setVisible(false);
+    }
+    
+    if (!User.checkPassword(campoContr.getText())) {
+        errorContr.setVisible(true);
+        datosValidos = false;
+    } else {
+        errorContr.setVisible(false);
+    }
+    
+    if (!User.isOlderThan(campoFecha.getValue(), 12)) {
+        errorFecha.setVisible(true);
+        datosValidos = false;
+    } else {
+        errorFecha.setVisible(false);
+    }
+    
+    if (datosValidos) {
+        app.registerUser(campoNombre.getText(), campoCorreo.getText(),
+                campoContr.getText(), campoFecha.getValue(), avatarPath);
+        
+        changeScene("PaginaPrincipal");
+    }
+        
+}
 
     @FXML
     private void subirAvatar(ActionEvent event) {

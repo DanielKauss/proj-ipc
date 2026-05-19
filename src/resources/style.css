@@ -119,6 +119,12 @@
     -fx-font-size: 13px;
 }
 
+.botones-subrayados{
+    -fx-underline: true;
+    -fx-background-color:transparent;
+    -fx-text-fill:white;
+}
+
 /*******************************************************************************
  *                                                                             *
  * High Contrast Theme                                                         *
