@@ -111,7 +111,7 @@
                         </VBox>
                         <VBox>
                            <children>
-                              <Label styleClass="ntext" text="Contraseña actual:">
+                              <Label styleClass="ntext" text="Contraseña nueva:">
                                  <padding>
                                     <Insets top="5.0" />
                                  </padding>
@@ -139,7 +139,7 @@
                         </VBox>
                         <VBox>
                            <children>
-                              <Label styleClass="ntext" text="Correo electrónico*:">
+                              <Label styleClass="ntext" text="Correo electrónico:">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -167,7 +167,7 @@
                         </VBox>
                         <VBox>
                            <children>
-                              <Label prefHeight="31.0" prefWidth="241.0" styleClass="ntext" text="Fecha de nacimiento*:">
+                              <Label prefHeight="31.0" prefWidth="241.0" styleClass="ntext" text="Fecha de nacimiento:">
                                  <padding>
                                     <Insets top="5.0" />
                                  </padding>

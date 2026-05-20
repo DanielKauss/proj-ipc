@@ -167,14 +167,14 @@ S17.642,20.762,13.558,20.762z";
 }
 
 .list-view{
-    -fx-background-color: #aaaaaa;
+    -fx-background-color:  #0b0b0b;
     -fx-border-color: white;
     -fx-border-width: 2 0 2 0;
 }
 
 .list-cell{
-    -fx-background-color: #aaaaaa;
-    -fx-text-fill: black;
+    -fx-background-color:  #0b0b0b;
+    -fx-text-fill: white;
     -fx-border-color: white;
     -fx-border-width: 0 0 1 0;
     -fx-cell-size: 100px; 
@@ -185,4 +185,22 @@ S17.642,20.762,13.558,20.762z";
 .list-cell:selected {
     -fx-background-color: #0685BC;
     -fx-text-fill: #ffffff;
+}
+.list-cell:filled {
+    -fx-border-color: #b8a5ff;
+    -fx-border-width: 0 0 1 0;
+}
+
+.session-row {
+    -fx-padding: 20;
+}
+
+.fecha {
+    -fx-text-fill: white;
+    -fx-font-size: 30px;
+}
+
+.info {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
 }
