@@ -31,11 +31,10 @@ public class EliminarMapaController implements Initializable {
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         eliminarMapa = false;
     }    
     
-    public boolean getEliminarMapa(){
+    public boolean getEliminarMapa() {
         return eliminarMapa;
     }
 
@@ -43,12 +42,10 @@ public class EliminarMapaController implements Initializable {
     private void eliminar(ActionEvent event) {
         eliminarMapa = true;
         bEliminar.getScene().getWindow().hide();
-        
     }
 
     @FXML
     private void cancelar(ActionEvent event) {
         bEliminar.getScene().getWindow().hide();
     }
-    
 }

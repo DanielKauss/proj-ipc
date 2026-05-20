@@ -44,7 +44,6 @@ public class AñadirMapaController implements Initializable {
     private Button bCancelar;
     @FXML
     private Button bAñadir;
-    
     @FXML
     private Label errorMapa;
     
@@ -62,33 +61,33 @@ public class AñadirMapaController implements Initializable {
      */
     
     
-    public boolean isOKPressed( )
-    {
+    public boolean isOKPressed( ) {
         return pulsadoOK;
     }
-    public MapRegion getMapa( )
-    {
+    public MapRegion getMapa( ) {
         return mapa;
     }
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         pulsadoOK = false;
         
         campoLatMin.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("-?\\d*\\.?\\d*")) {
                 campoLatMin.setText(oldValue);
         }});
+        
         campoLatMax.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("-?\\d*\\.?\\d*")) {
                 campoLatMax.setText(oldValue);
         }});
+        
         campoLongMin.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("-?\\d*\\.?\\d*")) {
                 campoLongMin.setText(oldValue);
         }});
+        
         campoLongMax.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("-?\\d*\\.?\\d*")) {
                 campoLongMax.setText(oldValue);
@@ -101,7 +100,6 @@ public class AñadirMapaController implements Initializable {
         
         errorMapa.setVisible(false);
     }    
-
 
     @FXML
     private void cancelar(ActionEvent event) {
@@ -124,18 +122,17 @@ public class AñadirMapaController implements Initializable {
         MapRegion nuevoMapa = app.addMapRegion(campoNombre.getText(), mapFile.getValue(), 
                     Double.parseDouble(campoLatMin.getText()), Double.parseDouble(campoLatMax.getText()),
                         Double.parseDouble(campoLongMin.getText()), Double.parseDouble(campoLongMax.getText()));
-        if(nuevoMapa == null){
+        
+        if (nuevoMapa == null){
             errorMapa.setVisible(true);
             campoLatMin.clear();
             campoLatMax.clear();
             campoLongMin.clear();
             campoLongMax.clear();
-        }else{
+        } else {
             pulsadoOK = true;
             mapa = nuevoMapa;
             bAñadir.getScene().getWindow().hide();
         }
-        
-    }
-    
+    } 
 }

@@ -42,14 +42,12 @@ public class GestionMapasController extends Controller {
     @FXML
     private Button bAñadir;
 
-    
     SportActivityApp app = SportActivityApp.getInstance();
     
     ObservableList<MapRegion> mapasObs;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
         List<MapRegion> mapas = app.getMapRegions();
         mapasObs = FXCollections.observableArrayList(mapas);
         
@@ -59,8 +57,6 @@ public class GestionMapasController extends Controller {
         
         bVisualizar.disableProperty().bind(Bindings.equal(-1, listView.getSelectionModel().selectedIndexProperty()));
         bEliminar.disableProperty().bind(Bindings.equal(-1, listView.getSelectionModel().selectedIndexProperty()));
-        
-        
     }    
 
     @FXML
@@ -76,7 +72,6 @@ public class GestionMapasController extends Controller {
         Stage stage = (Stage) bAñadir.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
-        
     }
 
     @FXML
@@ -96,12 +91,13 @@ public class GestionMapasController extends Controller {
         stage.setResizable(false);
         stage.showAndWait();
         
-        if(controlador2.getEliminarMapa()){
+        if (controlador2.getEliminarMapa()) {
             boolean mapaBorrado = app.removeMapRegion(mapaSeleccionado);
-            if(mapaBorrado){
+            
+            if (mapaBorrado) {
                 listView.getSelectionModel().clearSelection();
                 mapasObs.remove(mapaSeleccionado);
-            }else{
+            } else {
                 FXMLLoader miCargador2 = new FXMLLoader(getClass().getResource("/resources/fxml/AvisoMapa.fxml"));
                 Parent root2 = miCargador2.load();
                 Scene scene2 = new Scene(root2, 408, 170);
@@ -127,7 +123,6 @@ public class GestionMapasController extends Controller {
         
         AñadirMapaController controlador2 = miCargador.getController();
         
-        
         Scene scene = new Scene(root,500,550);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -136,26 +131,24 @@ public class GestionMapasController extends Controller {
         stage.setResizable(false);
         stage.showAndWait();
         
-        if(controlador2.isOKPressed()){
+        if (controlador2.isOKPressed()) {
             mapasObs.add(controlador2.getMapa());
         }
-        
-        
     }
-    
 }
-class MapListCell extends ListCell<MapRegion>
-{
+
+class MapListCell extends ListCell<MapRegion> {
+    
     @Override
-    protected void updateItem(MapRegion item, boolean empty)
-    {   super.updateItem(item, empty); // Obligatoria esta llamada
-        if (item==null || empty){
+    protected void updateItem(MapRegion item, boolean empty) {
+        super.updateItem(item, empty);
+        
+        if (item == null || empty) {
             setText(null);
             setGraphic(null);
-        }else{
+        } else {
             setText(item.getName());
         }
     }
-    
- }
+}
 

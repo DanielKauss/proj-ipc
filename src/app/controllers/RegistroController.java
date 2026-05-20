@@ -45,7 +45,9 @@ public class RegistroController extends Controller  {
     private PasswordField campoContr;
     
     String avatarPath = null;
+    
     boolean visible = false;
+    
     SportActivityApp app = SportActivityApp.getInstance();
     
     @Override
@@ -104,7 +106,6 @@ public class RegistroController extends Controller  {
         
         changeScene("PaginaPrincipal");
     }
-        
 }
 
     @FXML
@@ -114,11 +115,11 @@ public class RegistroController extends Controller  {
         fileChooser.getExtensionFilters().add(
             new FileChooser.ExtensionFilter("Imágenes JPG y PNG","*.jpg","*.jpeg","*.png")
         );
+        
         File archivo = fileChooser.showOpenDialog(null);
 
         if (archivo != null) {
             avatarPath = archivo.getAbsolutePath();
         }
     }
-
 }

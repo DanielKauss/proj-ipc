@@ -72,10 +72,9 @@ public class VisualizarMapaController extends Controller {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        zoom_slider.setMin(0.5);   // 50%
-        zoom_slider.setMax(1.5);   // 150%
-        zoom_slider.setValue(1.0); // 100%
+        zoom_slider.setMin(0.5);
+        zoom_slider.setMax(1.5);
+        zoom_slider.setValue(1.0);
 
         zoom_slider.valueProperty().addListener(
             (observable, oldVal, newVal) -> zoom(newVal.doubleValue())
@@ -97,7 +96,6 @@ public class VisualizarMapaController extends Controller {
     }
     
     private void zoom(double scaleValue) {
-      
         double scrollH = map_scrollpane.getHvalue();
         double scrollV = map_scrollpane.getVvalue();
 
@@ -107,7 +105,6 @@ public class VisualizarMapaController extends Controller {
         map_scrollpane.setHvalue(scrollH);
         map_scrollpane.setVvalue(scrollV);
     }
-
 
     @FXML
     private void salir(ActionEvent event) {
@@ -134,7 +131,6 @@ public class VisualizarMapaController extends Controller {
         double W = img.getWidth();
         double H = img.getHeight();
 
-        // Lienzo del mapa
         mapPane = new Pane();
         mapPane.setPrefSize(W, H);
         mapPane.setMinSize(W, H);
@@ -159,5 +155,4 @@ public class VisualizarMapaController extends Controller {
 
         map_scrollpane.setContent(contentGroup);
     }
-
 }
