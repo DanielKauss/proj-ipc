@@ -43,12 +43,13 @@
     -fx-background-position: center center;
 }
 
-.title {
-    -fx-fill: #ffffff;
+.label {
+    -fx-text-fill: #dddddd;
 }
 
-.ntext {
-    -fx-text-fill: #dddddd;
+.title {
+    -fx-fill: #ffffff;
+    -fx-text-fill: #ffffff;
 }
 
 .prim-button {
@@ -73,6 +74,14 @@
 
 .sec-button:hover {
     -fx-background-color: #cccccc;
+}
+
+.add-button {
+    -fx-pref-height: 48px;
+    -fx-pref-width: 48px;
+    -fx-background-color: #0685BC;
+    -fx-background-radius: 48px;
+    -fx-cursor: hand;
 }
 
 .text-field, .password-field, .date-picker > .text-field {
@@ -123,6 +132,9 @@
     -fx-underline: true;
     -fx-background-color:transparent;
     -fx-text-fill:white;
+}
+.activity-data {
+    -fx-font-size: 18px;
 }
 
 /*******************************************************************************
