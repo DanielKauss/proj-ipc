@@ -122,13 +122,8 @@ public class RegistroController extends Controller  {
         app.registerUser(campoNombre.getText(), campoCorreo.getText(),
                 campoContr.getText(), campoFecha.getValue(), avatarPath);
         
-        // 2. 🌟 LA SOLUCIÓN: Iniciamos sesión o lo marcamos como usuario actual
-        // Busca en tu clase 'SportActivityApp' cómo se llama el método para loguear. 
-        // Suele ser algo como:
         app.login(campoNombre.getText(), campoContr.getText()); 
-        // O tal vez: app.setCurrentUser(...);
 
-        // 3. Rompemos bindings y cambiamos de escena de forma segura
         campoContrVisible.textProperty().unbindBidirectional(campoContr.textProperty());
         changeScene("PaginaPrincipal");
     }
