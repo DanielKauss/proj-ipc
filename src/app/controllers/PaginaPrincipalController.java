@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -39,7 +40,6 @@ public class PaginaPrincipalController extends Controller {
     
     SportActivityApp app = SportActivityApp.getInstance();
      
-    private List<Activity> actividades = app.getUserActivities();
     
     private ObservableList<Activity> datos = null;
     @FXML
@@ -51,7 +51,9 @@ public class PaginaPrincipalController extends Controller {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        List<Activity> actividades = app.getUserActivities();
         datos = FXCollections.observableList(actividades);
+        lista.setCellFactory(c-> new ActivityListCell());
         lista.setItems(datos);
         
          if (app.getCurrentUser().getAvatar() != null) {
@@ -89,7 +91,14 @@ public class PaginaPrincipalController extends Controller {
     private void actionPerfil(MouseEvent event) {
         changeScene("ModificarPerfil");
     }
-
+    class ActivityListCell extends ListCell<Activity> {
+    
+    @Override
+    protected void updateItem(Activity item, boolean empty) {
+        super.updateItem(item, empty);
+            setText(item.getName() + " " + item.getDuration().toString() + " " + item.getEndTime().toString() + " " + item.getTotalDistance());
+    }
+}
   
     
 }
