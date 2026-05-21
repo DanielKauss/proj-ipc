@@ -13,6 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 import upv.ipc.sportlib.Activity;
 import upv.ipc.sportlib.SportActivityApp;
 import upv.ipc.sportlib.User;
@@ -29,8 +31,6 @@ public class PaginaPrincipalController extends Controller {
     @FXML
     private Button mapas;
     @FXML
-    private Button perfil;
-    @FXML
     private Button historial;
     @FXML
     private Button cerrar;
@@ -42,6 +42,10 @@ public class PaginaPrincipalController extends Controller {
     private List<Activity> actividades = app.getUserActivities();
     
     private ObservableList<Activity> datos = null;
+    @FXML
+    private ImageView avatarImage;
+    @FXML
+    private Circle avatarCircle;
     /**
      * Initializes the controller class.
      */
@@ -49,17 +53,22 @@ public class PaginaPrincipalController extends Controller {
     public void initialize(URL url, ResourceBundle rb) {
         datos = FXCollections.observableList(actividades);
         lista.setItems(datos);
+        
+         if (app.getCurrentUser().getAvatar() != null) {
+
+                avatarImage.setImage(app.getCurrentUser().getAvatar());
+                Circle clip = new Circle(55);
+                clip.setCenterX(55);
+                clip.setCenterY(55);
+
+            avatarImage.setClip(clip);
+            }
     }    
 
 
     @FXML
     private void mapas(ActionEvent event) {
          changeScene("GestionMapas");
-    }
-
-    @FXML
-    private void perfil(ActionEvent event) {
-        changeScene("ModificarPerfil");
     }
 
     @FXML
@@ -75,5 +84,12 @@ public class PaginaPrincipalController extends Controller {
     @FXML
     private void actividadNueva(ActionEvent event) {
     }
+
+    @FXML
+    private void actionPerfil(MouseEvent event) {
+        changeScene("ModificarPerfil");
+    }
+
+  
     
 }

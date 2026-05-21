@@ -39,7 +39,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="CENTER" prefHeight="800.0" prefWidth="1200.0" styleClass="window" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/21.0.3-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.LandingController">
+<GridPane alignment="CENTER" prefHeight="800.0" prefWidth="1200.0" styleClass="window" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.LandingController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -50,7 +50,7 @@
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
          <children>
             <Button fx:id="loginBtn" alignment="CENTER" mnemonicParsing="false" onMousePressed="#loginBtnClick" prefWidth="400.0" styleClass="prim-button" text="Iniciar Sesion" />
-            <Button fx:id="registerBtn" alignment="CENTER" mnemonicParsing="false" onMousePressed="#registerBtnClick" prefWidth="400.0" styleClass="sec-button" text="Regstrarse" />
+            <Button fx:id="registerBtn" alignment="CENTER" mnemonicParsing="false" onMousePressed="#registerBtnClick" prefWidth="400.0" styleClass="sec-button" text="Registrarse" />
          </children>
          <opaqueInsets>
             <Insets />

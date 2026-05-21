@@ -84,6 +84,17 @@
     -fx-cursor: hand;
 }
 
+.mini-button{
+    -fx-background-radius: 50;
+    -fx-background-color: #ff4d4d;
+    -fx-text-fill: white;
+    
+}
+
+.button-visible{
+    -fx-background-color: transparent;
+}
+
 .text-field, .password-field, .date-picker > .text-field {
     -fx-pref-height: 40px;
     -fx-background-color: #4a4a4a;

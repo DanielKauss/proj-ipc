@@ -10,12 +10,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import upv.ipc.sportlib.SportActivityApp;
 import upv.ipc.sportlib.User;
@@ -46,9 +49,19 @@ public class RegistroController extends Controller  {
     
     String avatarPath = null;
     
-    boolean visible = false;
+    boolean visiblePassword = false;
     
     SportActivityApp app = SportActivityApp.getInstance();
+    @FXML
+    private Circle avatarCircle;
+    @FXML
+    private ImageView avatarImage;
+    @FXML
+    private Button buttonEliminarAvatar;
+    @FXML
+    private TextField campoContrVisible;
+    @FXML
+    private Button buttonVisible;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,6 +69,11 @@ public class RegistroController extends Controller  {
         errorCorreo.setVisible(false);
         errorContr.setVisible(false);
         errorFecha.setVisible(false);
+        
+        campoContrVisible.textProperty()
+        .bindBidirectional(
+                campoContr.textProperty()
+        );
     }    
 
     @FXML
@@ -109,17 +127,52 @@ public class RegistroController extends Controller  {
 }
 
     @FXML
-    private void subirAvatar(ActionEvent event) {
+    private void subirAvatar(MouseEvent event) {
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar foto de avatar");
+
         fileChooser.getExtensionFilters().add(
-            new FileChooser.ExtensionFilter("Imágenes JPG y PNG","*.jpg","*.jpeg","*.png")
+                new FileChooser.ExtensionFilter(
+                        "Imágenes", "*.jpg", "*.jpeg", "*.png"
+                )
         );
-        
+
         File archivo = fileChooser.showOpenDialog(null);
 
         if (archivo != null) {
+
             avatarPath = archivo.getAbsolutePath();
+
+            Image image =
+                    new Image(archivo.toURI().toString());
+
+            avatarImage.setImage(image);
+
+            Circle clip = new Circle(55);
+            clip.setCenterX(55);
+            clip.setCenterY(55);
+
+            avatarImage.setClip(clip);
         }
+    }
+
+    @FXML
+    private void actionEliminarAvatar(ActionEvent event) {
+        
+        avatarPath = null;
+        avatarImage.setImage(null);
+    }
+
+    @FXML
+    private void mostrarContr(ActionEvent event) {
+        
+        visiblePassword = !visiblePassword;
+
+        campoContr.setVisible(!visiblePassword);
+        campoContr.setManaged(!visiblePassword);
+
+        campoContrVisible.setVisible(visiblePassword);
+        campoContrVisible.setManaged(visiblePassword);
     }
 }

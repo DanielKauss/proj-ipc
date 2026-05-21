@@ -38,7 +38,12 @@ public class LogInController implements Initializable {
     private Button cancel;
     
     private boolean nickexiste = false;
+    @FXML
+    private TextField campoContraVisible;
+    @FXML
+    private Button buttonVisible;
 
+    boolean visiblePassword = false;
     /**
      * Initializes the controller class.
      */
@@ -49,6 +54,10 @@ public class LogInController implements Initializable {
         buttonLogIn.disableProperty().bind(Bindings.or
         (Bindings.lessThan(campoCorreo.lengthProperty(),1) ,(Bindings.lessThan(campoContra.lengthProperty(), 1))));
         
+         campoContraVisible.textProperty()
+        .bindBidirectional(
+                campoContra.textProperty()
+        );
     }    
 
     @FXML
@@ -66,6 +75,18 @@ public class LogInController implements Initializable {
     @FXML
     private void actionCancel(ActionEvent event) {
         changeScene("LandingPage");
+    }
+
+    @FXML
+    private void mostrarContr(ActionEvent event) {
+         
+        visiblePassword = !visiblePassword;
+
+        campoContra.setVisible(!visiblePassword);
+        campoContra.setManaged(!visiblePassword);
+
+        campoContraVisible.setVisible(visiblePassword);
+        campoContraVisible.setManaged(visiblePassword);
     }
     
 }

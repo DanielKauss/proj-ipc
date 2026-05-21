@@ -17,6 +17,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import upv.ipc.sportlib.SportActivityApp;
 import upv.ipc.sportlib.User;
@@ -44,10 +48,23 @@ public class ModificarPerfilController extends Controller  {
     private DatePicker campoFecha;
     @FXML
     private PasswordField campoContr;
-    
-    String avatarPath = null;
-    boolean visible = false;
+
     SportActivityApp app = SportActivityApp.getInstance();
+    
+    String avatarPath = app.getCurrentUser().getAvatarPath();
+    
+    @FXML
+    private TextField campoContrVisible;
+    @FXML
+    private Button buttonVisible;
+    @FXML
+    private Circle avatarCircle;
+    @FXML
+    private ImageView avatarImage;
+    @FXML
+    private Button buttonEliminarAvatar;
+    
+    private boolean visiblePassword = false;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -65,12 +82,26 @@ public class ModificarPerfilController extends Controller  {
         
         campoFecha.setValue(app.getCurrentUser().getBirthDate());
         
+        campoContrVisible.textProperty()
+        .bindBidirectional(
+                campoContr.textProperty()
+        );
+        
+          if (app.getCurrentUser().getAvatar() != null) {
+
+                avatarImage.setImage(app.getCurrentUser().getAvatar());
+                Circle clip = new Circle(55);
+                clip.setCenterX(55);
+                clip.setCenterY(55);
+
+            avatarImage.setClip(clip);
+            }
         
     }    
 
     @FXML
     private void salir(ActionEvent event) {
-        changeScene("LandingPage");
+        changeScene("PaginaPrincipal");
     }
 
     @FXML
@@ -102,23 +133,60 @@ public class ModificarPerfilController extends Controller  {
             app.updateCurrentUser(campoCorreo.getText(),
                     campoContr.getText(), campoFecha.getValue(), avatarPath);
 
-            changeScene("PaginaPrincipal");
+            changeScene("ModificarPerfil");
         }
 
         }
 
     @FXML
-    private void subirAvatar(ActionEvent event) {
+
+    private void subirAvatar(MouseEvent event) {
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar foto de avatar");
+
         fileChooser.getExtensionFilters().add(
-            new FileChooser.ExtensionFilter("Imágenes JPG y PNG","*.jpg","*.jpeg","*.png")
+                new FileChooser.ExtensionFilter(
+                        "Imágenes", "*.jpg", "*.jpeg", "*.png"
+                )
         );
+
         File archivo = fileChooser.showOpenDialog(null);
 
         if (archivo != null) {
+
             avatarPath = archivo.getAbsolutePath();
+
+            Image image =
+                    new Image(archivo.toURI().toString());
+
+            avatarImage.setImage(image);
+
+            Circle clip = new Circle(55);
+            clip.setCenterX(55);
+            clip.setCenterY(55);
+
+            avatarImage.setClip(clip);
         }
+    }
+
+    @FXML
+    private void actionEliminarAvatar(ActionEvent event) {
+        
+        avatarPath = null;
+        avatarImage.setImage(null);
+    }
+
+    @FXML
+    private void mostrarContr(ActionEvent event) {
+        
+        visiblePassword = !visiblePassword;
+
+        campoContr.setVisible(!visiblePassword);
+        campoContr.setManaged(!visiblePassword);
+
+        campoContrVisible.setVisible(visiblePassword);
+        campoContrVisible.setManaged(visiblePassword);
     }
 
  
