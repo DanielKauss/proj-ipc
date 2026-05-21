@@ -53,8 +53,9 @@ public class PaginaPrincipalController extends Controller {
     public void initialize(URL url, ResourceBundle rb) {
         List<Activity> actividades = app.getUserActivities();
         datos = FXCollections.observableList(actividades);
-        lista.setCellFactory(c-> new ActivityListCell());
+        
         lista.setItems(datos);
+        lista.setCellFactory(c-> new ActivityListCell());
         
          if (app.getCurrentUser().getAvatar() != null) {
 
@@ -93,12 +94,13 @@ public class PaginaPrincipalController extends Controller {
     }
     class ActivityListCell extends ListCell<Activity> {
     
-    @Override
-    protected void updateItem(Activity item, boolean empty) {
-        super.updateItem(item, empty);
-            setText(item.getName() + " " + item.getDuration().toString() + " " + item.getEndTime().toString() + " " + item.getTotalDistance());
-    }
-}
-  
-    
+         @Override
+         protected void updateItem(Activity item, boolean empty) {
+            super.updateItem(item, empty);
+            if(item==null||empty)setText(null);
+            else{ 
+                setText(item.getName() + " Tiempo: " + item.getDuration().toString() + " Distancia: " + ((item.getTotalDistance()%1)/1000)+"km");
+            }
+        }
+    }   
 }
