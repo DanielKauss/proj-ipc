@@ -118,7 +118,7 @@ public class PaginaPrincipalController extends Controller {
             super.updateItem(item, empty);
             if(item==null||empty)setText(null);
             else{ 
-                setText(item.getName() + ": Tiempo: " + item.getDuration().toString() + " Distancia: " + Math.round(item.getTotalDistance())+"m");
+                setText(item.getName() + " Duracion: " + item.getDuration().toMinutes() + "min "+ (item.getDuration().toSeconds())%60  + "sec Distancia: " + Math.round(item.getTotalDistance())+"m");
             }
         }
     }   
