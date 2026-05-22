@@ -1,24 +1,29 @@
   package app.controllers;
 
 import app.Controller;
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import upv.ipc.sportlib.Activity;
 import upv.ipc.sportlib.SportActivityApp;
-import upv.ipc.sportlib.User;
 
 /**
  * FXML Controller class
@@ -80,8 +85,22 @@ public class PaginaPrincipalController extends Controller {
     }
 
     @FXML
-    private void cerrarSesion(ActionEvent event) {
-         changeScene("CerrarSesion");
+    private void cerrarSesion(ActionEvent event) throws IOException{
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/resources/fxml/CerrarSesion.fxml"));
+        Parent root = miCargador.load();
+        
+        CerrarSesionController controlador2 = miCargador.getController();
+        
+        Scene scene = new Scene(root,600,400);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.setTitle("Cerrar Sesion");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.showAndWait();
+        
     }
 
     @FXML

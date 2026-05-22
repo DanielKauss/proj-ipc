@@ -9,8 +9,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import upv.ipc.sportlib.SportActivityApp;
 
 /**
@@ -38,12 +38,18 @@ public class CerrarSesionController extends Controller {
     @FXML
     private void volver(ActionEvent event) {
         changeScene("PaginaPrincipal");
+        
+        Stage stage = (Stage) permanecer.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     private void salirse(ActionEvent event) {
         app.logout();
         changeScene("landingPage");
+        
+        Stage stage = (Stage) permanecer.getScene().getWindow();
+        stage.close();
     }
     
 }
