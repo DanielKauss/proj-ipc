@@ -126,12 +126,41 @@
     -fx-border-radius: 4px;
 }
 
-
-.form-wrap {
+.scroll-pane .viewport {
     -fx-background-color: #383838;
-    -fx-padding: 40px;
-    -fx-background-radius: 12px;
+  }
+
+.scroll-pane {
+    -fx-background-color:transparent;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #aaaaaa;
+    -fx-background-radius: 5em;
+}
+
+.activity-data-wrap {
+    -fx-background-color: #383838;
+    -fx-padding: 0px 40px 0px 40px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0.0, 0, 5);
+
 }
 
 .error {
@@ -146,35 +175,6 @@
 }
 .activity-data {
     -fx-font-size: 18px;
-}
-
-/*******************************************************************************
- *                                                                             *
- * High Contrast Theme                                                         *
- *                                                                             *
- ******************************************************************************/
-
-.contrast {
-    -app-color-hi: #5bf900;
-    -app-color-lo: black;
-    -app-hover: #666666;
-    -fx-background-color: -app-color-lo;
-}
-
-/*-------------------------- map pin ------------------------- */
-
-.map-pin {
-    -fx-shape: "M13.558,0C6.07,0,0,6.07,0,13.558s13.558,22.346,13.558,22.346s13.558-14.858,13.558-22.346S21.045,0,13.558,0z
-M13.558,20.762c-4.084,0-7.395-3.311-7.395-7.395s3.311-7.395,7.395-7.395c4.084,0,7.396,3.311,7.396,7.395
-S17.642,20.762,13.558,20.762z";    
-    -fx-background-color: black, white;
-    -fx-background-insets: 0, 2;
-    -fx-effect: dropshadow( two-pass-box, rgba(0, 0, 0, 0.5), 10, 0.0, 0, 10 );
-    -fx-pref-width: 48;
-    -fx-pref-height: 60;
-}
-.map-pin .arrow-button .arrow {
-    -fx-padding: 0;
 }
 
 .list-view{
@@ -214,4 +214,39 @@ S17.642,20.762,13.558,20.762z";
 .info {
     -fx-text-fill: white;
     -fx-font-size: 20px;
+}
+
+.chart {
+    -fx-padding: 15px;
+    -fx-background-color: transparent;
+}
+
+.chart-plot-background {
+    -fx-background-color: rgba(56, 56, 56, 0.7); 
+}
+
+.chart-vertical-grid-lines, .chart-horizontal-grid-lines {
+    -fx-stroke: #4a4a4a;
+    -fx-stroke-dash-array: 3px 3px;
+}
+
+.axis {
+    -fx-tick-label-fill: #dddddd;
+    -fx-stroke: #aaaaaa;
+}
+
+.axis-label {
+    -fx-text-fill: #ffffff;
+}
+
+.default-color0.chart-series-line {
+    -fx-stroke: #0685BC;
+    -fx-stroke-width: 3px;
+}
+
+.default-color0.chart-line-symbol {
+    -fx-background-color: #0685BC, #ffffff;
+    -fx-background-insets: 0, 2px;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
 }
