@@ -1,6 +1,7 @@
   package app.controllers;
 
 import app.Controller;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -10,15 +11,24 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -30,7 +40,7 @@ import upv.ipc.sportlib.SportActivityApp;
  *
  * @author Usuario
  */
-public class PaginaPrincipalController extends Controller {
+public class PaginaPrincipalController extends Controller implements Initializable{
 
     @FXML
     private Button añadir;
@@ -56,13 +66,88 @@ public class PaginaPrincipalController extends Controller {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         List<Activity> actividades = app.getUserActivities();
+        
         datos = FXCollections.observableList(actividades);
         
         lista.setItems(datos);
-        lista.setCellFactory(c-> new ActivityListCell());
         
-         if (app.getCurrentUser().getAvatar() != null) {
+        lista.setCellFactory(c -> new ListCell<Activity>() {
+
+    private final Label nombre = new Label();
+    private final Label duracion = new Label();
+    private final Label distancia = new Label();
+    private final Label velocidad = new Label();
+    private final Label mapa = new Label();
+
+    private final GridPane root = new GridPane();
+
+    {
+        root.setPadding(new Insets(20));
+        root.setHgap(40);
+
+        ColumnConstraints c1 = new ColumnConstraints();
+        c1.setPercentWidth(25);
+        c1.setHgrow(Priority.ALWAYS);
+        
+        nombre.setWrapText(true);
+        nombre.setMaxWidth(Double.MAX_VALUE);
+
+        ColumnConstraints c2 = new ColumnConstraints();
+        c2.setPercentWidth(35);
+
+        ColumnConstraints c3 = new ColumnConstraints();
+        c3.setPercentWidth(40);
+
+        root.getColumnConstraints().addAll(c1, c2, c3);
+
+        VBox centro = new VBox(5, duracion, distancia);
+
+        VBox derecha = new VBox(5, velocidad, mapa);
+
+        root.add(nombre, 0, 0);
+        root.add(centro, 1, 0);
+        root.add(derecha, 2, 0);
+    }
+
+    @Override
+    protected void updateItem(Activity item, boolean empty) {
+
+        super.updateItem(item, empty);
+
+        if (item == null || empty) {
+            setGraphic(null);
+            return;
+        }
+
+        nombre.setText(item.getName());
+
+        long minutos = item.getDuration().toMinutes();
+        long segundos = item.getDuration().toSeconds() % 60;
+
+        duracion.setText(
+            "Duración: " + minutos + " min " + segundos + " sec"
+        );
+
+        distancia.setText(
+            "Distancia: " +
+            Math.round(item.getTotalDistance()) + " m"
+        );
+
+        velocidad.setText(
+            "Velocidad: " +
+            Math.round(item.getAverageSpeed()*100)/100 + " km/h"
+        );
+
+        mapa.setText(item.getSuggestedMap().getName());
+
+        setGraphic(root);
+    }
+
+}); 
+                
+        if (app.getCurrentUser().getAvatar() != null) {
 
                 avatarImage.setImage(app.getCurrentUser().getAvatar());
                 Circle clip = new Circle(55);
@@ -70,7 +155,7 @@ public class PaginaPrincipalController extends Controller {
                 clip.setCenterY(55);
 
             avatarImage.setClip(clip);
-            }
+        }
     }    
 
 
@@ -105,21 +190,57 @@ public class PaginaPrincipalController extends Controller {
 
     @FXML
     private void actividadNueva(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+
+    fileChooser.setTitle("Seleccionar archivo GPX");
+
+    fileChooser.getExtensionFilters().add(
+        new FileChooser.ExtensionFilter(
+            "Archivos GPX",
+            "*.gpx"
+        )
+    );
+
+    File fichero = fileChooser.showOpenDialog(
+        lista.getScene().getWindow()
+    );
+    if (fichero == null) {
+        return;
+    }
+
+    try {
+
+        Activity actividad =
+            app.importActivity(fichero);
+
+        datos.add(actividad);
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        alert.setTitle("Actividad añadida");
+        alert.setHeaderText(null);
+
+        alert.setContentText(
+            "La actividad se añadió correctamente."
+        );
+
+        alert.showAndWait();
+
+    } catch (Exception e) {
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        alert.setTitle("Error");
+        alert.setHeaderText("No se pudo importar el GPX");
+
+        alert.setContentText(e.getMessage());
+
+        alert.showAndWait();
+    }
     }
 
     @FXML
     private void actionPerfil(MouseEvent event) {
         changeScene("ModificarPerfil");
     }
-    class ActivityListCell extends ListCell<Activity> {
-    
-         @Override
-         protected void updateItem(Activity item, boolean empty) {
-            super.updateItem(item, empty);
-            if(item==null||empty)setText(null);
-            else{ 
-                setText(item.getName() + " Duracion: " + item.getDuration().toMinutes() + "min "+ (item.getDuration().toSeconds())%60  + "sec Distancia: " + Math.round(item.getTotalDistance())+"m");
-            }
-        }
-    }   
 }
