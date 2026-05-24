@@ -6,6 +6,8 @@ Grupo compuesto por:
 - Daniel Dimov Kisyov
 - Ruben Puig Lopez
 
+enlace github [aqui](https://github.com/DanielKauss/proj-ipc)
+
 # Uso
 
 Si se ha descargado el proyecto de github, añadir una carpeta llamad "lib" al directorio base, 
