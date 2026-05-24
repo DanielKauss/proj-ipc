@@ -5,6 +5,7 @@ build/
 nbbuild/
 dist/
 nbdist/
+avatars/
 .nb-gradle/
 lib/
 .direnv
