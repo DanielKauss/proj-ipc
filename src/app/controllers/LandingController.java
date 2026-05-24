@@ -15,6 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -22,26 +24,28 @@ import javafx.stage.Stage;
  * @author daniel
  */
 public class LandingController extends Controller {
+
     @FXML
     private Button loginBtn;
     private Button RegisterBtn;
     @FXML
     private Button registerBtn;
-    
+    @FXML
+    private Label title;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       
     }
 
     @FXML
     public void loginBtnClick(MouseEvent event) throws IOException {
-        System.out.println("btn clicked!!");
         changeScene("LogIn");
     }
 
     @FXML
     public void registerBtnClick(MouseEvent event) throws IOException {
-        System.out.println("btn clicked!!");
         changeScene("Registro");
     }
-    
+
 }

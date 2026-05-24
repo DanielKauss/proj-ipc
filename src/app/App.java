@@ -25,16 +25,16 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         //System.out.println(SportActivityApp.getInstance().login("juan_23", "juan_23!"));
         //Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/PaginaPrincipal.fxml"));
-        Font.loadFont(
-                getClass().getResourceAsStream(
-                        "/fonts/MervaleScrpit-Regular.ttf"
-                ),
+         Font font = Font.loadFont(
+                getClass().getResourceAsStream("/fonts/MervaleScript-Regular.ttf"),
                 80
         );
         Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/LandingPage.fxml"));
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/logo.png")));
         Scene scene = new Scene(root);
+        
         stage.setTitle("Running La Safor");
+        
         stage.setScene(scene);
         stage.show();
 
