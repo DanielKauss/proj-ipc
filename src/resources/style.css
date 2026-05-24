@@ -51,6 +51,36 @@
     -fx-fill: #ffffff;
     -fx-text-fill: #ffffff;
 }
+.titulo{
+	-fx-font-size: 80px;
+	-fx-text-fill: white;
+	-fx-font-family: "Brush Script MT";
+	-fx-effect: dropshadow(gaussian, black, 1.5, 1, 8, 8);
+}
+.bienvenido{
+	-fx-font-size: 40px;
+	-fx-text-fill: white;
+	-fx-font-family: "Brush Script MT";
+	-fx-effect: dropshadow(gaussian, black, 1.5, 1, 5, 5);
+}
+.iniciar{
+	-fx-background-color: #1f9bb6;
+	-fx-background-radius: 12;
+	-fx-text-fill: white;
+	-fx-font-size: 28px;
+	-fx-font-family: "Consolas";
+	-fx-padding: 15 40 15 40;
+	-fx-effect: dropshadow(gaussian, black, 20, 0.5, 10, 10);
+}
+.registrar{
+	-fx-background-color: #707070;
+	-fx-background-radius: 12;
+	-fx-text-fill: white;
+	-fx-font-size: 28px;
+	-fx-font-family: "Consolas";
+	-fx-padding: 15 40 15 40;
+	-fx-effect: dropshadow(gaussian, black, 20, 0.5, 10, 10);
+}
 
 .prim-button {
     -fx-pref-height: 48px;

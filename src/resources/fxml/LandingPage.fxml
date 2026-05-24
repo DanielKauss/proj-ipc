@@ -34,12 +34,14 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="CENTER" prefHeight="800.0" prefWidth="1200.0" styleClass="window" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.LandingController">
+<GridPane alignment="CENTER" prefHeight="800.0" prefWidth="1200.0" styleClass="window" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.LandingController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -49,8 +51,17 @@
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
          <children>
-            <Button fx:id="loginBtn" alignment="CENTER" mnemonicParsing="false" onMousePressed="#loginBtnClick" prefWidth="400.0" styleClass="prim-button" text="Iniciar Sesion" />
-            <Button fx:id="registerBtn" alignment="CENTER" mnemonicParsing="false" onMousePressed="#registerBtnClick" prefWidth="400.0" styleClass="sec-button" text="Registrarse" />
+            <HBox alignment="BOTTOM_LEFT" maxWidth="-Infinity" prefHeight="100.0" prefWidth="800.0">
+               <children>
+                  <Label styleClass="bienvenido" text="Bienvenid@ a" />
+               </children>
+            </HBox>
+            <Label styleClass="titulo" text="Running La Safor" />
+            <Button fx:id="loginBtn" alignment="CENTER" mnemonicParsing="false" onMousePressed="#loginBtnClick" prefWidth="400.0" styleClass="iniciar" text="Iniciar Sesion">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin></Button>
+            <Button fx:id="registerBtn" alignment="CENTER" mnemonicParsing="false" onMousePressed="#registerBtnClick" prefWidth="400.0" styleClass="registrar" stylesheets="@../style.css" text="Registrarse" />
          </children>
          <opaqueInsets>
             <Insets />
