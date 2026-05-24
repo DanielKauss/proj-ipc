@@ -120,7 +120,7 @@
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
                <children>
                   <Label fx:id="labelAnotacionesTotales" styleClass="total-number" text="0" />
-                  <Label styleClass="total-text" text="summary-text" />
+                  <Label styleClass="total-text" text="anotaciones" />
                </children>
             </VBox>
          </children>
