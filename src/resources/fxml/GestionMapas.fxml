@@ -82,36 +82,36 @@
                            </GridPane.margin></ListView>
                         <VBox prefHeight="750.0" prefWidth="0.0" GridPane.columnIndex="1">
                            <children>
-                              <Button fx:id="bVisualizar" mnemonicParsing="false" onAction="#visualizar" prefHeight="106.0" prefWidth="135.0" styleClass="sec-button">
+                              <Button fx:id="bVisualizar" mnemonicParsing="false" onAction="#visualizar" styleClass="sec-button">
                                  <VBox.margin>
                                     <Insets left="30.0" />
                                  </VBox.margin>
                                  <graphic>
-                                    <ImageView fitHeight="99.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="55.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/ojo.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="bEliminar" mnemonicParsing="false" onAction="#eliminar" prefHeight="106.0" prefWidth="132.0" styleClass="sec-button">
+                              <Button fx:id="bEliminar" mnemonicParsing="false" onAction="#eliminar" styleClass="sec-button">
                                  <VBox.margin>
                                     <Insets left="30.0" top="30.0" />
                                  </VBox.margin>
                                  <graphic>
-                                    <ImageView fitHeight="97.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="55.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/papelera.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="bAñadir" mnemonicParsing="false" onAction="#añadir" prefHeight="106.0" prefWidth="135.0" styleClass="prim-button" text="+">
+                              <Button fx:id="bAñadir" mnemonicParsing="false" onAction="#añadir" prefHeight="60.0" prefWidth="74.0" styleClass="prim-button" text="+">
                                  <VBox.margin>
                                     <Insets left="30.0" top="30.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font size="53.0" />
+                                    <Font size="28.0" />
                                  </font>
                               </Button>
                            </children>

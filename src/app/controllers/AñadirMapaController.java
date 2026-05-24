@@ -74,7 +74,7 @@ public class AñadirMapaController implements Initializable {
         pulsadoOK = false;
         
         campoLatMin.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("-?\\d*\\.?\\d*")) {
+            if (!newValue.matches("-?\\d*\\.?\\d*")) { //Apoyado en la IA para el método matches
                 campoLatMin.setText(oldValue);
         }});
         
