@@ -74,6 +74,8 @@ public class RegistroController extends Controller  {
         .bindBidirectional(
                 campoContr.textProperty()
         );
+        
+        
     }    
 
     @FXML
