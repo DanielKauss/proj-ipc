@@ -52,9 +52,9 @@
     -fx-text-fill: #ffffff;
 }
 .titulo{
-	-fx-font-size: 80px;
+	-fx-font-size: 120px;
 	-fx-text-fill: white;
-	-fx-font-family: "Brush Script MT";
+	-fx-font-family: "Mervale Script";
 	-fx-effect: dropshadow(gaussian, black, 1.5, 1, 8, 8);
 }
 .bienvenido{

@@ -56,7 +56,7 @@
                   <Label styleClass="bienvenido" text="Bienvenid@ a" />
                </children>
             </HBox>
-            <Label styleClass="titulo" text="Running La Safor" />
+            <Label styleClass="titulo" stylesheets="@../style.css" text="Running La Safor" />
             <Button fx:id="loginBtn" alignment="CENTER" mnemonicParsing="false" onMousePressed="#loginBtnClick" prefWidth="400.0" styleClass="iniciar" text="Iniciar Sesion">
                <VBox.margin>
                   <Insets top="20.0" />
