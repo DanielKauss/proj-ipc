@@ -61,17 +61,22 @@ public class GestionMapasController extends Controller {
 
     @FXML
     private void visualizar(ActionEvent event) throws IOException {
-        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/resources/fxml/VisualizarMapa.fxml"));
-        Parent root = miCargador.load();
-        
-        VisualizarMapaController controlador = miCargador.getController();
-        
-        controlador.initMapa(listView.getSelectionModel().getSelectedItem());
-        
-        Scene scene = new Scene(root,1200,800);
-        Stage stage = (Stage) bAñadir.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        FXMLLoader loader = new FXMLLoader(
+                LandingController.class.getResource(
+                        "/resources/fxml/VisualizarMapa.fxml"
+                )
+        );
+        try {
+            Parent root = loader.load();
+
+            VisualizarMapaController controller = loader.getController();
+            controller.initMapa(listView.getSelectionModel().getSelectedItem());
+
+            stage.getScene().setRoot(root);
+            stage.show();
+        } catch (Exception ex) {
+            System.out.println(ex.fillInStackTrace());
+        }   
     }
 
     @FXML

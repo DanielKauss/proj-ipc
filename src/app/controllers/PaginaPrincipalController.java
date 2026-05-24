@@ -192,7 +192,7 @@ public class PaginaPrincipalController extends Controller implements Initializab
 
                 VistaActividadController controller = loader.getController();
                 controller.updateData(lista.getSelectionModel().getSelectedItem());
-                stage.setScene(new Scene(root));
+                stage.getScene().setRoot(root);
                 stage.show();
             } catch (Exception ex) {
                 System.out.println(ex.fillInStackTrace());
