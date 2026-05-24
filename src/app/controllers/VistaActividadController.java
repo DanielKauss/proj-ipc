@@ -29,6 +29,7 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -60,8 +61,6 @@ public class VistaActividadController extends Controller {
     @FXML
     private VBox chartContainer;
     @FXML
-    private Label nameLabel;
-    @FXML
     private Label dateLabel;
     @FXML
     private Label durationLabel;
@@ -71,6 +70,8 @@ public class VistaActividadController extends Controller {
     private Label heightDiffLabel;
     @FXML
     private Label speedLabel;
+    @FXML
+    private Label anotationLabel;
     @FXML
     private Button backBtn;
     @FXML
@@ -85,6 +86,8 @@ public class VistaActividadController extends Controller {
     private ImageView mapImageView;
     @FXML
     private ScrollPane mapScrollPane;
+    @FXML
+    private TextField nameTextField;
 
     SportActivityApp app = SportActivityApp.getInstance();
     
@@ -107,6 +110,8 @@ public class VistaActividadController extends Controller {
             zoomGroup = new Group(mapImageView);
             mapScrollPane.setContent(zoomGroup);
         }
+        
+        anotationLabel.setVisible(false);
         
         zoomInBtn.setOnAction(event -> zoom(1.1));
         zoomOutBtn.setOnAction(event -> zoom(0.9));
@@ -132,19 +137,49 @@ public class VistaActividadController extends Controller {
             }
         });
         
+        nameTextField.textProperty().addListener((obs, oldv, newv) -> {
+            System.out.println("changed name: " + newv);
+            app.renameActivity(activity, newv);
+        });
+        
         mapImageView.setOnMouseMoved(event -> {
-            System.out.println(mousePos.toString());
             mousePos = new Point2D(event.getX(), event.getY());
         });
         
         mapScrollPane.setOnMouseClicked(event -> {
              if (event.getButton() == MouseButton.PRIMARY && contextMenu.isShowing()) {
+                 firstAnnotationPoint = null;
+                 anotationLabel.setVisible(false);
                  contextMenu.hide();
              }
         });
         
         backBtn.setOnAction((e) -> {
             changeScene("PaginaPrincipal");
+        });
+        
+        deleteActivityBtn.setOnAction(e -> {
+            try {
+                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/resources/fxml/EliminarMapa.fxml"));
+                Parent root = miCargador.load();
+
+                EliminarMapaController controlador2 = miCargador.getController();
+
+                Scene scene = new Scene(root,500,200);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Eliminar Actividad");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setResizable(false);
+                stage.showAndWait();
+
+                if (controlador2.getEliminarMapa()) {
+                    app.removeActivity(activity);
+                    changeScene("PaginaPrincipal");
+                }
+            } catch (IOException ex) {
+                    
+            }
         });
     }    
     
@@ -176,7 +211,7 @@ public class VistaActividadController extends Controller {
         }
         durationLabel.setText(durationText);
 
-        nameLabel.setText(activity.getName());
+        nameTextField.setText(activity.getName());
         distanceLabel.setText(String.format("%.2f m", activity.getTotalDistance()));
         heightDiffLabel.setText(String.format("%.2f m", activity.getMaxElevation() - activity.getMinElevation()));   
         speedLabel.setText(String.format("%.2f min/km", activity.getAveragePace()));
@@ -210,6 +245,11 @@ public class VistaActividadController extends Controller {
             if (speed < minSpeed) minSpeed = speed;
             if (speed > maxSpeed) maxSpeed = speed;
         }
+        
+        if (pixelPoints.getFirst() != null) {
+            mapScrollPane.setHvalue(pixelPoints.getFirst().getX() / mapImageView.getImage().getWidth());
+            mapScrollPane.setVvalue(pixelPoints.getFirst().getY() / mapImageView.getImage().getHeight());
+        }
 
         routeSegments.clear();
         routeSegmentColors.clear();
@@ -235,7 +275,6 @@ public class VistaActividadController extends Controller {
             zoomGroup.getChildren().add(segment);
         }
         
-        
         drawAnnotations();
         createChartSpeed(trackPoints);
         createChartElevation(trackPoints);
@@ -243,7 +282,6 @@ public class VistaActividadController extends Controller {
 
     private void drawAnnotations() {
         List<Annotation> annotations = activity.getAnnotations();
-        System.out.println(annotations.size());
         for (int i = 0; i < annotations.size(); i++) {
             Annotation curr = annotations.get(i);
 
@@ -427,7 +465,6 @@ public class VistaActividadController extends Controller {
 
             double dataX = xAxis.getValueForDisplay(mouseInAxis.getX()).doubleValue();
             int closestIndex = (int)Math.round(dataX / series.getData().getLast().getXValue().doubleValue() * (series.getData().size() - 1));
-            System.out.println("DataX" + dataX + " closest " + closestIndex);
 
             for (int j = 0; j < series.getData().size() - 1; j++) {
                 unhighlightSegment(j);
@@ -499,6 +536,7 @@ public class VistaActividadController extends Controller {
                 drawAnnotations();
             }
             firstAnnotationPoint = null;
+            anotationLabel.setVisible(false);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -522,10 +560,12 @@ public class VistaActividadController extends Controller {
         MenuItem line = new MenuItem("Añadir linea");
         line.setOnAction(e -> {
             currentType = AnnotationType.LINE;
+            anotationLabel.setVisible(true);
         });
         MenuItem circle = new MenuItem("Añadir circulo");
         circle.setOnAction(e -> {
             currentType = AnnotationType.CIRCLE;
+            anotationLabel.setVisible(true);
         });
         
         MenuItem reset = new MenuItem("Reset Zoom/Pan");
