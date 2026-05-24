@@ -114,7 +114,8 @@
                <Insets bottom="15.0" right="15.0" />
             </padding>
             <children>
-               <Button mnemonicParsing="false" styleClass="add-button" text="+" />
+               <Button fx:id="zoomOutBtn" mnemonicParsing="false" styleClass="zoom-button" text="-" />
+                  <Button fx:id="zoomInBtn" mnemonicParsing="false" styleClass="zoom-button" text="+" />
             </children>
          </HBox>
       </children>

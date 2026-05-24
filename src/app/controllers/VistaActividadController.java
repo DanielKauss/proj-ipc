@@ -74,6 +74,10 @@ public class VistaActividadController extends Controller {
     @FXML
     private Button backBtn;
     @FXML
+    private Button zoomInBtn;
+    @FXML
+    private Button zoomOutBtn;
+    @FXML
     private Button changeMapBtn;
     @FXML
     private Button deleteActivityBtn;
@@ -104,35 +108,32 @@ public class VistaActividadController extends Controller {
             mapScrollPane.setContent(zoomGroup);
         }
         
+        zoomInBtn.setOnAction(event -> zoom(1.1));
+        zoomOutBtn.setOnAction(event -> zoom(0.9));
+        
         zoomGroup.setOnScroll((ScrollEvent event) -> {
             event.consume();
             if (event.getDeltaY() == 0) { return; }
-            double scrollH = mapScrollPane.getHvalue();
-            double scrollV = mapScrollPane.getVvalue();
             double zoomFactor = (event.getDeltaY() > 0) ? 1.1 : 0.9;
-            double newScale = zoomGroup.getScaleX() * zoomFactor;
             
-            if (newScale >= MIN_SCALE && newScale <= MAX_SCALE) {
-                zoomGroup.setScaleX(newScale);
-                zoomGroup.setScaleY(newScale);
-            }
-            
-            mapScrollPane.setHvalue(scrollH);
-            mapScrollPane.setVvalue(scrollV);
+            zoom(zoomFactor);
         });
 
         ContextMenu contextMenu = createContextMenu();
         
         mapScrollPane.setOnContextMenuRequested(event -> {
             if (firstAnnotationPoint != null) {
-                
+                secondAnnotationPoint = projection.unproject(mousePos.getX(), mousePos.getY());
+                openAnnotationPopup();
             }
-            firstAnnotationPoint = projection.unproject(mousePos.getX(), mousePos.getY());
-
-            contextMenu.show(mapScrollPane, event.getScreenX(), event.getScreenY());
+            else {
+                firstAnnotationPoint = projection.unproject(mousePos.getX(), mousePos.getY());
+                contextMenu.show(mapScrollPane, event.getScreenX(), event.getScreenY());
+            }
         });
         
         mapImageView.setOnMouseMoved(event -> {
+            System.out.println(mousePos.toString());
             mousePos = new Point2D(event.getX(), event.getY());
         });
         
@@ -181,8 +182,23 @@ public class VistaActividadController extends Controller {
         speedLabel.setText(String.format("%.2f min/km", activity.getAveragePace()));
         drawRoute();
     }
+    
+    private void zoom(double factor) {
+        double scrollH = mapScrollPane.getHvalue();
+        double scrollV = mapScrollPane.getVvalue();
 
-    public void drawRoute() {
+        double newScale = zoomGroup.getScaleX() * factor;
+
+        if (newScale >= MIN_SCALE && newScale <= MAX_SCALE) {
+            zoomGroup.setScaleX(newScale);
+            zoomGroup.setScaleY(newScale);
+        }
+
+        mapScrollPane.setHvalue(scrollH);
+        mapScrollPane.setVvalue(scrollV);
+    }
+
+    private void drawRoute() {
         List<Point2D> pixelPoints = projection.projectActivity(activity);
         List<TrackPoint> trackPoints = activity.getTrackPoints();
 
@@ -235,16 +251,16 @@ public class VistaActividadController extends Controller {
 
             switch (curr.getType()) {
                 case TEXT: {
-                    Text annotLabel = new Text();
-                    annotLabel.setText(curr.getText());
+                    Text annotLabel = new Text(curr.getText());
                     annotLabel.setFill(color);
-                    System.out.println(curr.getText());
 
                     Point2D p = projection.project(curr.getGeoPoints().getFirst());
                     annotLabel.setX(p.getX());
                     annotLabel.setY(p.getY());
 
-                    zoomGroup.getChildren().add(annotLabel);
+                    if (curr.getText() != null && !curr.getText().trim().isEmpty()) {
+                        zoomGroup.getChildren().add(annotLabel);
+                    }
                     break;
                 }
                 case POINT: {
@@ -254,30 +270,45 @@ public class VistaActividadController extends Controller {
                     pointMarker.setFill(color);
                     zoomGroup.getChildren().add(pointMarker);
 
+
+                    Text annotLabel = new Text(curr.getText());
+                    annotLabel.setFill(color);
+                    annotLabel.setX(p.getX() + 8);
+                    annotLabel.setY(p.getY() + 4);
+
                     if (curr.getText() != null && !curr.getText().trim().isEmpty()) {
-                        Text pointLabel = new Text(curr.getText());
-                        pointLabel.setFill(color);
-                        pointLabel.setX(p.getX() + 8);
-                        pointLabel.setY(p.getY() + 4);
-                        zoomGroup.getChildren().add(pointLabel);
+                        zoomGroup.getChildren().add(annotLabel);
                     }
                     break;
                 }
                 case LINE: {
                     Point2D start = projection.project(curr.getGeoPoints().get(0));
                     Point2D end = projection.project(curr.getGeoPoints().get(1));
+                    
+                    Point2D mid = start.midpoint(end);
+                    
+                    Text annotLabel = new Text(curr.getText());
+                    annotLabel.setFill(color);
+                    annotLabel.setX(mid.getX() + 8);
+                    annotLabel.setY(mid.getY() + 4);
 
                     Line line = new Line(start.getX(), start.getY(), end.getX(), end.getY());
                     line.setStroke(color);
                     line.setStrokeWidth(curr.getStrokeWidth());
 
                     zoomGroup.getChildren().add(line);
+                    zoomGroup.getChildren().add(annotLabel);
                     break;
                 }
                 case CIRCLE: {
                     Point2D center = projection.project(curr.getGeoPoints().get(0));
                     Point2D edge = projection.project(curr.getGeoPoints().get(1));
 
+                    Text annotLabel = new Text(curr.getText());
+                    annotLabel.setFill(color);
+                    annotLabel.setX(center.getX() + 8);
+                    annotLabel.setY(center.getY() + 4);
+                    
                     double radius = center.distance(edge);
 
                     Circle mapCircle = new Circle(center.getX(), center.getY(), radius);
@@ -286,6 +317,7 @@ public class VistaActividadController extends Controller {
                     mapCircle.setStrokeWidth(curr.getStrokeWidth());
 
                     zoomGroup.getChildren().add(mapCircle);
+                    zoomGroup.getChildren().add(annotLabel);
                     break;
                 }
             }
@@ -427,9 +459,7 @@ public class VistaActividadController extends Controller {
     
     private GeoPoint firstAnnotationPoint;
     private GeoPoint secondAnnotationPoint;
-    private String tempText;
-    private String tempColor;
-    private AnnotationType tempType;
+    private AnnotationType currentType;
 
 
     private void openAnnotationPopup() {
@@ -441,28 +471,34 @@ public class VistaActividadController extends Controller {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Añadir Anotación");
-            stage.setScene(new Scene(root, 350, 360));
+            stage.setScene(new Scene(root, 350, 260));
             stage.setResizable(false);
             stage.showAndWait();
 
             if (controlador.isConfirmed()) {
-                AnnotationType tipoSeleccionado = controlador.getType();
-                
-                if (tipoSeleccionado == AnnotationType.POINT || tipoSeleccionado == AnnotationType.TEXT) {
-                    Annotation ann = new Annotation(
-                        tipoSeleccionado,
+                Annotation ann;
+                if (currentType == AnnotationType.POINT || currentType == AnnotationType.TEXT) {
+                     ann = new Annotation(
+                        currentType,
                         controlador.getText(),
                         controlador.getHexColor(),
                         2.0,
                         List.of(firstAnnotationPoint)
                     );
-                    app.addAnnotation(activity, ann);
-                    // Llamar a drawAnnotations() para repintar
-
                 } else {
-
+                     ann = new Annotation(
+                        currentType,
+                        controlador.getText(),
+                        controlador.getHexColor(),
+                        2.0,
+                        List.of(firstAnnotationPoint, secondAnnotationPoint)
+                    );
                 }
+                
+                app.addAnnotation(activity, ann);
+                drawAnnotations();
             }
+            firstAnnotationPoint = null;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -471,15 +507,29 @@ public class VistaActividadController extends Controller {
     private ContextMenu createContextMenu() {
         ContextMenu menu = new ContextMenu();
         
-
-        MenuItem item1 = new MenuItem("Anyadir anotacion");
-        item1.setOnAction(e -> {
+        MenuItem text = new MenuItem("Añadir texto");
+        text.setOnAction(e -> {
+            currentType = AnnotationType.TEXT;
             openAnnotationPopup();
-            drawAnnotations();
         });
         
-        MenuItem item2 = new MenuItem("Reset Zoom/Pan");
-        item2.setOnAction(e -> {
+        MenuItem point = new MenuItem("Añadir punto");
+        point.setOnAction(e -> {
+            currentType = AnnotationType.POINT;
+            openAnnotationPopup();
+        });
+        
+        MenuItem line = new MenuItem("Añadir linea");
+        line.setOnAction(e -> {
+            currentType = AnnotationType.LINE;
+        });
+        MenuItem circle = new MenuItem("Añadir circulo");
+        circle.setOnAction(e -> {
+            currentType = AnnotationType.CIRCLE;
+        });
+        
+        MenuItem reset = new MenuItem("Reset Zoom/Pan");
+        reset.setOnAction(e -> {
             zoomGroup.setScaleX(1.0);
             zoomGroup.setScaleY(1.0);
             
@@ -487,7 +537,7 @@ public class VistaActividadController extends Controller {
             mapScrollPane.setVvalue(0.5);
         });
 
-        menu.getItems().addAll(item1, item2);
+        menu.getItems().addAll(text, point, line, circle, reset);
         return menu;
     }
 }

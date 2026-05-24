@@ -25,14 +25,11 @@ public class AñadirAnotacionController extends Controller {
 
     @FXML private TextField textField;
     @FXML private ColorPicker colorPicker;
-    @FXML private ComboBox<AnnotationType> typeComboBox;
 
     private boolean isConfirmed = false;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        typeComboBox.getItems().addAll(AnnotationType.values());
-        typeComboBox.setValue(AnnotationType.POINT);
         colorPicker.setValue(Color.web("#E74C3C"));
     }
 
@@ -56,8 +53,6 @@ public class AñadirAnotacionController extends Controller {
     public boolean isConfirmed() { return isConfirmed; }
     
     public String getText() { return textField.getText(); }
-    
-    public AnnotationType getType() { return typeComboBox.getValue(); }
     
     public String getHexColor() {
         Color c = colorPicker.getValue();
