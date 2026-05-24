@@ -110,7 +110,7 @@
                         </GridPane>
                      </children>
                   </VBox>
-                  <ScrollPane fx:id="map_scrollpane" hbarPolicy="ALWAYS" onMouseMoved="#showPosition" pannable="true" prefHeight="398.0" prefWidth="358.0" vbarPolicy="ALWAYS">
+                  <ScrollPane fx:id="map_scrollpane" hbarPolicy="ALWAYS" onMouseMoved="#showPosition" pannable="true" prefHeight="398.0" prefWidth="358.0" vbarPolicy="ALWAYS" SplitPane.resizableWithParent="false">
                      <content>
                         <Pane>
                            <children>

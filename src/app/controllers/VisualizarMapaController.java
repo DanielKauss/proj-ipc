@@ -75,12 +75,10 @@ public class VisualizarMapaController extends Controller {
         zoom_slider.setMin(0.5);
         zoom_slider.setMax(1.5);
         zoom_slider.setValue(1.0);
-
+        
         zoom_slider.valueProperty().addListener(
             (observable, oldVal, newVal) -> zoom(newVal.doubleValue())
-        );
-        
-        
+        );  
     }    
 
     @FXML
