@@ -16,7 +16,7 @@ import upv.ipc.sportlib.SportActivityApp;
 
 /**
  *
- * @author jose
+ * @author daniel
  */
 public class App extends Application {
     
@@ -28,7 +28,7 @@ public class App extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/LandingPage.fxml"));
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/logo.png")));
         Scene scene = new Scene(root);
-        stage.setTitle("Demo mapas - IPC");
+        stage.setTitle("Running La Safor");
         stage.setScene(scene);
         stage.show();
         
