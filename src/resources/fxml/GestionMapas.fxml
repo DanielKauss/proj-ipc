@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" prefHeight="800.0" prefWidth="1200.0" styleClass="window" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.GestionMapasController">
+<GridPane alignment="CENTER" prefHeight="800.0" prefWidth="1200.0" styleClass="window" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.GestionMapasController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -53,7 +53,7 @@
                   </Button>
                   <VBox alignment="CENTER" GridPane.columnIndex="1">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Gestión de Mapas" textAlignment="CENTER" wrappingWidth="358.962158203125">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Gestión de Mapas" textAlignment="CENTER" wrappingWidth="654.962158203125">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="36.0" />
                            </font>
@@ -79,7 +79,8 @@
                         <ListView fx:id="listView" prefHeight="627.0" prefWidth="973.0">
                            <GridPane.margin>
                               <Insets left="20.0" />
-                           </GridPane.margin></ListView>
+                           </GridPane.margin>
+                        </ListView>
                         <VBox prefHeight="750.0" prefWidth="0.0" GridPane.columnIndex="1">
                            <children>
                               <Button fx:id="bVisualizar" mnemonicParsing="false" onAction="#visualizar" styleClass="sec-button">

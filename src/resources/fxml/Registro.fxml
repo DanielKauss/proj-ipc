@@ -59,7 +59,7 @@
                   </Button>
                   <VBox alignment="CENTER" GridPane.columnIndex="1">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Registrarse" textAlignment="CENTER" wrappingWidth="226.962158203125">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Registrarse" textAlignment="CENTER" wrappingWidth="547.962158203125">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="36.0" />
                            </font>
@@ -93,7 +93,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="campoNombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="200.0">
+                              <TextField fx:id="campoNombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="150.0" prefHeight="26.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -150,7 +150,7 @@
                                     </Button>
                                  </children>
                               </HBox>
-                              <Label fx:id="errorContr" ellipsisString="" styleClass="error" text="La contraseña debe ser entre 8 y 20 caracteres, con al menos una mayúscula, una minúscula, un dígito y un símbolo especial" textFill="RED" textOverrun="CLIP" wrapText="true" />
+                              <Label fx:id="errorContr" ellipsisString="" minHeight="50.0" prefHeight="30.0" prefWidth="453.0" styleClass="error" text="La contraseña debe ser entre 8 y 20 caracteres, con al menos una mayúscula, una minúscula, un dígito y un símbolo especial" textFill="RED" textOverrun="CLIP" wrapText="true" />
                            </children>
                         </VBox>
                         <VBox>
@@ -163,7 +163,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="campoCorreo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="330.0" promptText="usuario@dominio">
+                              <TextField fx:id="campoCorreo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="150.0" prefHeight="35.0" prefWidth="330.0" promptText="usuario@dominio">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

@@ -48,15 +48,12 @@
 }
 
 .title {
-    -fx-fill: #ffffff;
-    -fx-text-fill: #ffffff;
+    -fx-font-size: 80px;
+    -fx-fill: white;
+    -fx-font-family: "Mervale Script";
+    -fx-effect: dropshadow(gaussian, black, 1.5, 1, 8, 8);
 }
-.titulo{
-	-fx-font-size: 120px;
-	-fx-text-fill: white;
-	-fx-font-family: "Mervale Script";
-	-fx-effect: dropshadow(gaussian, black, 1.5, 1, 8, 8);
-}
+
 .bienvenido{
 	-fx-font-size: 40px;
 	-fx-text-fill: white;
@@ -99,6 +96,7 @@
     -fx-pref-height: 48px;
     -fx-background-color: #aaaaaa;
     -fx-background-radius: 8px;
+    -fx-text-fill:white;
     -fx-cursor: hand;
 }
 
@@ -268,7 +266,7 @@
 .list-cell {
     -fx-background-color: rgba(56, 56, 56, 0.92);
     -fx-text-fill: #ffffff;
-    -fx-padding: 12px 16px;
+
     -fx-background-insets: 0 0 8px 0;
     -fx-background-radius: 10px;
     -fx-border-color: transparent;

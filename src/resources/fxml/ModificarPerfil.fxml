@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" prefHeight="800.0" prefWidth="1200.0" styleClass="window" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/21.0.3-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.ModificarPerfilController">
+<GridPane alignment="CENTER" prefHeight="800.0" prefWidth="1200.0" styleClass="window" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.ModificarPerfilController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -59,7 +59,7 @@
                   </Button>
                   <VBox alignment="CENTER" GridPane.columnIndex="1">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Modificar Perfil" textAlignment="CENTER" wrappingWidth="258.962158203125">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Modificar Perfil" textAlignment="CENTER" wrappingWidth="550.962158203125">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="36.0" />
                            </font>
@@ -81,7 +81,7 @@
                   <RowConstraints minHeight="10.0" vgrow="NEVER" />
                </rowConstraints>
                <children>
-                  <VBox spacing="10.0" styleClass="form-wrap" GridPane.columnIndex="1">
+                  <VBox prefWidth="538.0" spacing="10.0" styleClass="form-wrap" GridPane.columnIndex="1">
                      <children>
                         <VBox>
                            <children>
@@ -93,7 +93,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="campoNombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="200.0">
+                              <TextField fx:id="campoNombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="150.0" prefHeight="35.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -128,7 +128,7 @@
                                  <children>
                                     <StackPane alignment="CENTER_LEFT">
                                        <children>
-                                          <PasswordField fx:id="campoContr" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="200.0">
+                                          <PasswordField fx:id="campoContr" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="150.0" prefHeight="35.0" prefWidth="200.0">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -150,7 +150,7 @@
                                     </Button>
                                  </children>
                               </HBox>
-                              <Label fx:id="errorContr" ellipsisString="" styleClass="error" text="La contraseña debe ser entre 8 y 20 caracteres, con al menos una mayúscula, una minúscula, un dígito y un símbolo especial" textFill="RED" textOverrun="CLIP" wrapText="true">
+                              <Label fx:id="errorContr" ellipsisString="" prefHeight="60.0" styleClass="error" text="La contraseña debe ser entre 8 y 20 caracteres, con al menos una mayúscula, una minúscula, un dígito y un símbolo especial" textFill="RED" textOverrun="CLIP" wrapText="true">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -167,7 +167,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="campoCorreo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="330.0" promptText="usuario@dominio">
+                              <TextField fx:id="campoCorreo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="150.0" prefHeight="35.0" prefWidth="330.0" promptText="usuario@dominio">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -239,7 +239,7 @@
                         </Separator>
                         <HBox alignment="TOP_CENTER" spacing="25.0">
                            <children>
-                              <Button defaultButton="true" mnemonicParsing="false" onAction="#actionModificar" prefHeight="1000.0" prefWidth="1000.0" styleClass="prim-button" text="Modificar" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#actionModificar" prefHeight="47.0" prefWidth="453.0" styleClass="prim-button" text="Modificar" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>

@@ -133,7 +133,7 @@ public class ModificarPerfilController extends Controller  {
             app.updateCurrentUser(campoCorreo.getText(),
                     campoContr.getText(), campoFecha.getValue(), avatarPath);
 
-            changeScene("ModificarPerfil");
+            changeScene("PaginaPrincipal");
         }
 
         }

@@ -181,7 +181,7 @@ public class PaginaPrincipalController extends Controller implements Initializab
         });
 
         lista.setOnMouseClicked((e) -> {
-            System.out.println("clicked on " + lista.getSelectionModel().getSelectedItem());
+            if(lista.getSelectionModel().getSelectedItem() == null) return;
             FXMLLoader loader = new FXMLLoader(
                     LandingController.class.getResource(
                             "/resources/fxml/VistaActividad.fxml"

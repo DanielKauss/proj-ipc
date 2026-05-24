@@ -508,7 +508,7 @@ public class VistaActividadController extends Controller {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Añadir Anotación");
-            stage.setScene(new Scene(root, 350, 260));
+            stage.setScene(new Scene(root, 400, 300));
             stage.setResizable(false);
             stage.showAndWait();
 
