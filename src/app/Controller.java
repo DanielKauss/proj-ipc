@@ -5,20 +5,18 @@
 package app;
 
 import app.controllers.LandingController;
-import app.controllers.MapaDemoController;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import upv.ipc.sportlib.SportActivityApp;
 
 /**
  *
  * @author daniel
  */
 public abstract class Controller implements Initializable {
-    static Stage stage;
+    static public Stage stage;
     
     public static void changeScene(String name) {
         FXMLLoader loader = new FXMLLoader(

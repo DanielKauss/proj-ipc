@@ -10,9 +10,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="window" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.PaginaPrincipalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="window" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/21.0.3-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.PaginaPrincipalController">
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="172.0" spacing="20.0" stylesheets="@../style.css" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="250.0" spacing="20.0" styleClass="activity-list-left" stylesheets="@../style.css" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="añadir" mnemonicParsing="false" onAction="#actividadNueva" prefHeight="30.0" prefWidth="177.0" styleClass="prim-button" text="+">
                <font>
@@ -36,12 +36,12 @@
             <Button fx:id="historial" mnemonicParsing="false" onAction="#historialSesiones" styleClass="botones-subrayados" stylesheets="@../style.css" text="Historial de Sesiones" />
             <Button fx:id="cerrar" mnemonicParsing="false" onAction="#cerrarSesion" styleClass="botones-subrayados" text="Cerrar Sesion" />
          </children>
-         <BorderPane.margin>
+         <padding>
             <Insets bottom="20.0" left="25.0" right="20.0" top="40.0" />
-         </BorderPane.margin>
+         </padding>
       </VBox>
    </left>
    <center>
-      <ListView fx:id="lista" prefHeight="529.0" prefWidth="519.0" styleClass="window" stylesheets="@../style.css" BorderPane.alignment="CENTER" />
+      <ListView fx:id="lista" prefHeight="529.0" prefWidth="519.0" style="-fx-background-color: trasnparent;" stylesheets="@../style.css" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

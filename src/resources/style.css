@@ -76,6 +76,25 @@
     -fx-background-color: #cccccc;
 }
 
+.delete-button {
+    -fx-pref-height: 48px;
+    -fx-background-color: #cc2222;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.delete-button:hover {
+    -fx-background-color: #dd2222;
+}
+
+.back-button {
+     -fx-background-color: #141414;
+}
+
+.back-button:hover {
+     -fx-background-color: #242424;
+}
+
 .add-button {
     -fx-pref-height: 48px;
     -fx-pref-width: 48px;
@@ -156,11 +175,17 @@
     -fx-background-radius: 5em;
 }
 
+.form-wrap {
+    -fx-background-color: #383838;
+    -fx-padding: 40px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0.0, 0, 5);
+}
+
 .activity-data-wrap {
     -fx-background-color: #383838;
     -fx-padding: 0px 40px 0px 40px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0.0, 0, 5);
-
 }
 
 .error {
@@ -177,29 +202,69 @@
     -fx-font-size: 18px;
 }
 
-.list-view{
-    -fx-background-color:  #0b0b0b;
-    -fx-border-color: white;
-    -fx-border-width: 2 0 2 0;
+.activity-list-left {
+    -fx-background-color: #282828;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0.0, 0, 5);
 }
 
-.list-cell{
-    -fx-background-color:  #0b0b0b;
-    -fx-text-fill: white;
-    -fx-border-color: white;
-    -fx-border-width: 0 0 1 0;
-    -fx-cell-size: 100px; 
-    -fx-padding: 10px; 
-    -fx-font-size: 32px;
+.list-view {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 8px;
 }
 
-.list-cell:selected {
+.list-view .virtual-flow {
+    -fx-background-color: transparent;
+}
+
+.list-view .content {
+    -fx-background-color: transparent;
+}
+
+.list-view .scroll-bar:vertical,
+.list-view .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.list-view .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.list-view .viewport {
+    -fx-background-color: transparent;
+}
+
+.list-cell {
+    -fx-background-color: rgba(56, 56, 56, 0.92);
+    -fx-text-fill: #ffffff;
+    -fx-padding: 12px 16px;
+    -fx-background-insets: 0 0 8px 0;
+    -fx-background-radius: 10px;
+    -fx-border-color: transparent;
+    -fx-font-size: 18px;
+    -fx-cell-size: 64px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0.0, 0, 5);
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #444444;
+}
+
+.list-cell:filled:selected,
+.list-cell:filled:selected:hover {
     -fx-background-color: #0685BC;
     -fx-text-fill: #ffffff;
 }
-.list-cell:filled {
-    -fx-border-color: #b8a5ff;
-    -fx-border-width: 0 0 1 0;
+
+.list-cell:empty {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-border-color: transparent;
+}
+
+.list-view:focused .list-cell:filled:selected {
+    -fx-background-color: #089de0;
 }
 
 .session-row {
@@ -245,8 +310,8 @@
 }
 
 .default-color0.chart-line-symbol {
-    -fx-background-color: #0685BC, #ffffff;
-    -fx-background-insets: 0, 2px;
+    -fx-background-color: transparent;
+    /* -fx-background-insets: 0, 2px; */
     -fx-scale-x: 1.2;
     -fx-scale-y: 1.2;
 }

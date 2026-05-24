@@ -146,6 +146,26 @@ public class PaginaPrincipalController extends Controller implements Initializab
     }
 
 }); 
+        
+        lista.setOnMouseClicked((e) -> {
+            System.out.println("clicked on " + lista.getSelectionModel().getSelectedItem());
+            FXMLLoader loader = new FXMLLoader(
+                LandingController.class.getResource(
+                    "/resources/fxml/VistaActividad.fxml"
+                )
+            );
+            try {
+                Parent root = loader.load();
+
+                VistaActividadController controller = loader.getController();
+                controller.updateData(lista.getSelectionModel().getSelectedItem());
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (Exception ex) {
+                System.out.println(ex.fillInStackTrace());
+            }
+
+        });
                 
         if (app.getCurrentUser().getAvatar() != null) {
 

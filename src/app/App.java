@@ -22,6 +22,9 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        //System.out.println(SportActivityApp.getInstance().login("juan_23", "juan_23!"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/PaginaPrincipal.fxml"));
+
         Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/LandingPage.fxml"));
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/logo.png")));
         Scene scene = new Scene(root);
