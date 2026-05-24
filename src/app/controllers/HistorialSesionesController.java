@@ -43,6 +43,14 @@ public class HistorialSesionesController implements Initializable {
     ObservableList<Session> Historial = null;
     
   private ObservableList<Session> historial;
+    @FXML
+    private Label labelTiempoTotal;
+    @FXML
+    private Label labelActividadesTotales;
+    @FXML
+    private Label labelVistasTotales;
+    @FXML
+    private Label labelAnotacionesTotales;
 
 @Override
 public void initialize(URL url, ResourceBundle rb) {
@@ -53,7 +61,37 @@ public void initialize(URL url, ResourceBundle rb) {
     historial = FXCollections.observableArrayList(datos);
 
     HistorialObservable.setItems(historial);
+    
+    long tiempoTotal = 0;
+    int actividadesTotal = 0;
+    int vistasTotal = 0;
+    int anotacionesTotal = 0;
 
+    for (Session s : historial) {
+
+        tiempoTotal += s.getDuration().toMinutes();
+
+        actividadesTotal += s.getImportedActivities();
+
+        vistasTotal += s.getViewedActivities();
+
+        anotacionesTotal += s.getAnnotationsCreated();
+    }
+
+    labelTiempoTotal.setText(tiempoTotal + "");
+
+    labelActividadesTotales.setText(
+            actividadesTotal + ""
+    );
+
+    labelVistasTotales.setText(
+            vistasTotal + ""
+    );
+
+    labelAnotacionesTotales.setText(
+            anotacionesTotal + ""
+    );
+    
     HistorialObservable.setCellFactory(param ->
             new ListCell<Session>() {
 

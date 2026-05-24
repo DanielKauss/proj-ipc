@@ -250,7 +250,37 @@
 .list-cell:filled:hover {
     -fx-background-color: #444444;
 }
+.total-box {
+    -fx-background-color:
+        linear-gradient(to right, #2e2e2e, #3b3b3b);
 
+    -fx-background-radius: 18;
+
+    -fx-padding: 18 30 18 30;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.35),
+        20,
+        0.2,
+        0,
+        4
+    );
+
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-radius: 18;
+}
+
+.total-number {
+    -fx-font-size: 28px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.total-text {
+    -fx-font-size: 13px;
+    -fx-text-fill: #bdbdbd;
+}
 .list-cell:filled:selected,
 .list-cell:filled:selected:hover {
     -fx-background-color: #0685BC;
