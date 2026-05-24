@@ -71,7 +71,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="369.0" GridPane.columnIndex="1">
+            <VBox alignment="CENTER" prefHeight="118.0" prefWidth="1007.0" GridPane.columnIndex="1">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Historial de Sesiones" textAlignment="CENTER">
                      <font>
