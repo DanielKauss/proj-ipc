@@ -1,4 +1,4 @@
-  package app.controllers;
+package app.controllers;
 
 import app.Controller;
 import java.io.File;
@@ -40,7 +40,7 @@ import upv.ipc.sportlib.SportActivityApp;
  *
  * @author Usuario
  */
-public class PaginaPrincipalController extends Controller implements Initializable{
+public class PaginaPrincipalController extends Controller implements Initializable {
 
     @FXML
     private Button añadir;
@@ -52,107 +52,140 @@ public class PaginaPrincipalController extends Controller implements Initializab
     private Button cerrar;
     @FXML
     private ListView<Activity> lista;
-    
+
     SportActivityApp app = SportActivityApp.getInstance();
-     
-    
+
     private ObservableList<Activity> datos = null;
     @FXML
     private ImageView avatarImage;
     @FXML
     private Circle avatarCircle;
+    @FXML
+    private Label labelTiempoTotal;
+    @FXML
+    private Label labelDistanciaAcumulada;
+    @FXML
+    private Label labelMetrosAscenso;
+    @FXML
+    private Label labelMetrosDescenso;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         List<Activity> actividades = app.getUserActivities();
-        
+
         datos = FXCollections.observableList(actividades);
-        
+
         lista.setItems(datos);
-        
-        lista.setCellFactory(c -> new ListCell<Activity>() {
+        double distanciaTotal = 0;
+        double ascensoTotal = 0;
+        double descensoTotal = 0;
+        int minutosTotales = 0;
 
-    private final Label nombre = new Label();
-    private final Label duracion = new Label();
-    private final Label distancia = new Label();
-    private final Label velocidad = new Label();
-    private final Label mapa = new Label();
-
-    private final GridPane root = new GridPane();
-
-    {
-        root.setPadding(new Insets(20));
-        root.setHgap(40);
-
-        ColumnConstraints c1 = new ColumnConstraints();
-        c1.setPercentWidth(25);
-        c1.setHgrow(Priority.ALWAYS);
-        
-        nombre.setWrapText(true);
-        nombre.setMaxWidth(Double.MAX_VALUE);
-
-        ColumnConstraints c2 = new ColumnConstraints();
-        c2.setPercentWidth(35);
-
-        ColumnConstraints c3 = new ColumnConstraints();
-        c3.setPercentWidth(40);
-
-        root.getColumnConstraints().addAll(c1, c2, c3);
-
-        VBox centro = new VBox(5, duracion, distancia);
-
-        VBox derecha = new VBox(5, velocidad, mapa);
-
-        root.add(nombre, 0, 0);
-        root.add(centro, 1, 0);
-        root.add(derecha, 2, 0);
-    }
-
-    @Override
-    protected void updateItem(Activity item, boolean empty) {
-
-        super.updateItem(item, empty);
-
-        if (item == null || empty) {
-            setGraphic(null);
-            return;
+        for (Activity a : datos) {
+            distanciaTotal += a.getTotalDistance();
+            ascensoTotal += a.getElevationGain();
+            descensoTotal += a.getElevationLoss();
+            minutosTotales += a.getDuration().toMinutes();
         }
 
-        nombre.setText(item.getName());
+        labelTiempoTotal.setText(minutosTotales + "");
 
-        long minutos = item.getDuration().toMinutes();
-        long segundos = item.getDuration().toSeconds() % 60;
-
-        duracion.setText(
-            "Duración: " + minutos + " min " + segundos + " sec"
+        labelMetrosAscenso.setText(
+                Math.round(ascensoTotal) + ""
         );
 
-        distancia.setText(
-            "Distancia: " +
-            Math.round(item.getTotalDistance()) + " m"
+        labelDistanciaAcumulada.setText(
+                Math.round(distanciaTotal) + ""
         );
 
-        velocidad.setText(
-            "Velocidad: " +
-            Math.round(item.getAverageSpeed()*100)/100 + " km/h"
+        labelMetrosDescenso.setText(
+                Math.round(descensoTotal) + ""
         );
 
-        mapa.setText(item.getSuggestedMap().getName());
+        lista.setCellFactory(c -> new ListCell<Activity>() {
 
-        setGraphic(root);
-    }
+            private final Label nombre = new Label();
+            private final Label duracion = new Label();
+            private final Label distancia = new Label();
+            private final Label velocidad = new Label();
+            private final Label mapa = new Label();
 
-}); 
-        
+            private final GridPane root = new GridPane();
+
+            {
+                root.setPadding(new Insets(20));
+                root.setHgap(40);
+
+                ColumnConstraints c1 = new ColumnConstraints();
+                c1.setPercentWidth(25);
+                c1.setHgrow(Priority.ALWAYS);
+
+                nombre.setWrapText(true);
+                nombre.setMaxWidth(Double.MAX_VALUE);
+
+                ColumnConstraints c2 = new ColumnConstraints();
+                c2.setPercentWidth(35);
+
+                ColumnConstraints c3 = new ColumnConstraints();
+                c3.setPercentWidth(40);
+
+                root.getColumnConstraints().addAll(c1, c2, c3);
+
+                VBox centro = new VBox(5, duracion, distancia);
+
+                VBox derecha = new VBox(5, velocidad, mapa);
+
+                root.add(nombre, 0, 0);
+                root.add(centro, 1, 0);
+                root.add(derecha, 2, 0);
+            }
+
+            @Override
+            protected void updateItem(Activity item, boolean empty) {
+
+                super.updateItem(item, empty);
+
+                if (item == null || empty) {
+                    setGraphic(null);
+                    return;
+                }
+
+                nombre.setText(item.getName());
+
+                long minutos = item.getDuration().toMinutes();
+                long segundos = item.getDuration().toSeconds() % 60;
+
+                duracion.setText(
+                        "Duración: " + minutos + " min " + segundos + " sec"
+                );
+
+                distancia.setText(
+                        "Distancia: "
+                        + Math.round(item.getTotalDistance()) + " m"
+                );
+
+                velocidad.setText(
+                        "Velocidad: "
+                        + Math.round(item.getAverageSpeed() * 100) / 100 + " km/h"
+                );
+
+                mapa.setText(item.getSuggestedMap().getName());
+
+                setGraphic(root);
+            }
+
+        });
+
         lista.setOnMouseClicked((e) -> {
             System.out.println("clicked on " + lista.getSelectionModel().getSelectedItem());
             FXMLLoader loader = new FXMLLoader(
-                LandingController.class.getResource(
-                    "/resources/fxml/VistaActividad.fxml"
-                )
+                    LandingController.class.getResource(
+                            "/resources/fxml/VistaActividad.fxml"
+                    )
             );
             try {
                 Parent root = loader.load();
@@ -166,22 +199,21 @@ public class PaginaPrincipalController extends Controller implements Initializab
             }
 
         });
-                
+
         if (app.getCurrentUser().getAvatar() != null) {
 
-                avatarImage.setImage(app.getCurrentUser().getAvatar());
-                Circle clip = new Circle(55);
-                clip.setCenterX(55);
-                clip.setCenterY(55);
+            avatarImage.setImage(app.getCurrentUser().getAvatar());
+            Circle clip = new Circle(55);
+            clip.setCenterX(55);
+            clip.setCenterY(55);
 
             avatarImage.setClip(clip);
         }
-    }    
-
+    }
 
     @FXML
     private void mapas(ActionEvent event) {
-         changeScene("GestionMapas");
+        changeScene("GestionMapas");
     }
 
     @FXML
@@ -190,13 +222,13 @@ public class PaginaPrincipalController extends Controller implements Initializab
     }
 
     @FXML
-    private void cerrarSesion(ActionEvent event) throws IOException{
+    private void cerrarSesion(ActionEvent event) throws IOException {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/resources/fxml/CerrarSesion.fxml"));
         Parent root = miCargador.load();
-        
+
         CerrarSesionController controlador2 = miCargador.getController();
-        
-        Scene scene = new Scene(root,600,400);
+
+        Scene scene = new Scene(root, 600, 400);
         Stage stage = new Stage();
         stage.initStyle(StageStyle.TRANSPARENT);
         scene.setFill(Color.TRANSPARENT);
@@ -205,58 +237,58 @@ public class PaginaPrincipalController extends Controller implements Initializab
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.showAndWait();
-        
+
     }
 
     @FXML
     private void actividadNueva(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
 
-    fileChooser.setTitle("Seleccionar archivo GPX");
+        fileChooser.setTitle("Seleccionar archivo GPX");
 
-    fileChooser.getExtensionFilters().add(
-        new FileChooser.ExtensionFilter(
-            "Archivos GPX",
-            "*.gpx"
-        )
-    );
-
-    File fichero = fileChooser.showOpenDialog(
-        lista.getScene().getWindow()
-    );
-    if (fichero == null) {
-        return;
-    }
-
-    try {
-
-        Activity actividad =
-            app.importActivity(fichero);
-
-        datos.add(actividad);
-        
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-        alert.setTitle("Actividad añadida");
-        alert.setHeaderText(null);
-
-        alert.setContentText(
-            "La actividad se añadió correctamente."
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter(
+                        "Archivos GPX",
+                        "*.gpx"
+                )
         );
 
-        alert.showAndWait();
+        File fichero = fileChooser.showOpenDialog(
+                lista.getScene().getWindow()
+        );
+        if (fichero == null) {
+            return;
+        }
 
-    } catch (Exception e) {
+        try {
 
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+            Activity actividad
+                    = app.importActivity(fichero);
 
-        alert.setTitle("Error");
-        alert.setHeaderText("No se pudo importar el GPX");
+            datos.add(actividad);
 
-        alert.setContentText(e.getMessage());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
-        alert.showAndWait();
-    }
+            alert.setTitle("Actividad añadida");
+            alert.setHeaderText(null);
+
+            alert.setContentText(
+                    "La actividad se añadió correctamente."
+            );
+
+            alert.showAndWait();
+
+        } catch (Exception e) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+
+            alert.setTitle("Error");
+            alert.setHeaderText("No se pudo importar el GPX");
+
+            alert.setContentText(e.getMessage());
+
+            alert.showAndWait();
+        }
     }
 
     @FXML
