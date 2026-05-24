@@ -90,7 +90,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="campoCorreo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="50.0" prefHeight="45.0" prefWidth="674.4" promptText="Ej: juan123" />
+                        <TextField fx:id="campoCorreo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="40.0" minWidth="50.0" prefHeight="40.0" prefWidth="674.4" promptText="Ej: juan123" />
                      </children>
                   </VBox>
                </children>
@@ -108,7 +108,7 @@
                            <children>
                               <StackPane alignment="CENTER_LEFT">
                                  <children>
-                                    <PasswordField fx:id="campoContra" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="50.0" prefHeight="45.0" prefWidth="674.4">
+                                    <PasswordField fx:id="campoContra" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="40.0" minWidth="50.0" prefHeight="40.0" prefWidth="674.4">
                                        <font>
                                           <Font size="14.0" />
                                        </font>

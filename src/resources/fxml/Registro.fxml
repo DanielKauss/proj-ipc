@@ -94,7 +94,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="campoNombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="150.0" prefHeight="26.0" prefWidth="200.0">
+                              <TextField fx:id="campoNombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="40.0" minWidth="150.0" prefHeight="26.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -129,12 +129,12 @@
                                  <children>
                                     <StackPane alignment="CENTER_LEFT">
                                        <children>
-                                          <PasswordField fx:id="campoContr" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="200.0">
+                                          <TextField fx:id="campoContrVisible" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="200.0" visible="false" />
+                                          <PasswordField fx:id="campoContr" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="40.0" minWidth="150.0" prefHeight="26.0" prefWidth="200.0">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </PasswordField>
-                                          <TextField fx:id="campoContrVisible" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="200.0" visible="false" />
                                        </children>
                                     </StackPane>
                                     <Button fx:id="buttonVisible" mnemonicParsing="false" onAction="#mostrarContr" prefHeight="35.0" prefWidth="35.0" styleClass="button-visible" textAlignment="CENTER" textFill="TRANSPARENT">
@@ -167,7 +167,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="campoCorreo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="150.0" prefHeight="35.0" prefWidth="330.0" promptText="usuario@dominio">
+                              <TextField fx:id="campoCorreo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="330.0" promptText="usuario@dominio">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
