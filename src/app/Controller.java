@@ -24,16 +24,19 @@ public abstract class Controller implements Initializable {
                 "/resources/fxml/" + name + ".fxml"
             )
         );
+        
         try {
             Parent root = loader.load();
 
-            // aqui se pueden pasar valores creo?
-            // Controller controller = loader.getController();
-            // Stage stage = (Stage) loginBtn.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            if (stage.getScene() != null) {
+                stage.getScene().setRoot(root);
+            } else {
+                stage.setScene(new Scene(root));
+            }
+
             stage.show();
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace(); 
         }
     }
 }
