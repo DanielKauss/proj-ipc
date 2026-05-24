@@ -47,7 +47,7 @@
       <ListView fx:id="lista" prefHeight="529.0" prefWidth="519.0" style="-fx-background-color: trasnparent;" stylesheets="@../style.css" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="total-box" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="total-box" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
                <children>
